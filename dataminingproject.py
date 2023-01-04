@@ -7,6 +7,7 @@ with st.sidebar:
   selected = option_menu (
     menu_title = "Main menu",
     options = ["Data Analysis", "Feature Selection & SMOTE", "Model"],
+    icons = ["bar-chart-line","box-arrow-down-right","robot"],
   )
  
 if selected == "Data Analysis":
