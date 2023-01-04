@@ -21,7 +21,7 @@ if selected == "Data Analysis":
   col1, col2 = st.columns(2)
   with col1:
     st.header("Google map")
-    st.map()
+    st.map(df)
   with col2:
     st.header("2nd col")
     st.image("https://static.streamlit.io/examples/cat.jpg")
