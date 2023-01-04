@@ -27,8 +27,8 @@ if selected == "Data Analysis":
   with col1:
     st.header("Google map")
     st.map(df)
-    lat = df.latitude.tolist()
-    lng = df.longitude.tolist()
+    lat = df.latitude.astype(float)
+    lng = df.longitude.astype(float)
     heat_df=df[["lat","lng"]]
     heat_data=list(zip(df.lat, df.lng))
     folium.plugins.HeatMap(heat_data).add_to(m)
