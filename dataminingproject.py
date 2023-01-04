@@ -15,7 +15,7 @@ if selected == "Data Analysis":
   st.title("Data Analysis")
   
   df = pd.read_csv('dataset.csv')
-  st.dataframe(df,height = 10)
+  st.dataframe(df,height = 20)
   
   col1, col2 = st.columns(2)
   with col1:
