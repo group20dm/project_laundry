@@ -29,7 +29,9 @@ if selected == "Data Analysis":
     st.map(df)
     lat = df.latitude.tolist()
     lng = df.longitude.tolist()
-    HeatMap(list(zip(lat, lng))).add_to(m)
+    heat_df=df[["lat","lng"]]
+    heat_data=list(zip(df.lat, df.lng))
+    folium.plugins.HeatMap(heat_data).add_to(m)
     m
   with col2:
     st.header("2nd col")
