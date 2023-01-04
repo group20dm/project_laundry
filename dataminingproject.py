@@ -12,6 +12,7 @@ with st.sidebar:
  
 if selected == "Data Analysis":
   st.title("Data Analysis")
+  st.map()
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
 if selected == "Model":
