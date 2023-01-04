@@ -11,8 +11,8 @@ with st.sidebar:
   )
  
 if selected == "Data Analysis":
-  
   st.title("Data Analysis")
+  
   col1, col2 = st.columns(2)
   
   with col1:
@@ -24,6 +24,16 @@ if selected == "Data Analysis":
   
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
+  
+  col1, col2 = st.columns(2)
+  
+  with col1:
+    st.header("Boruta")
+    st.image("https://static.streamlit.io/examples/cat.jpg")
+  with col2:
+    st.header("RFE")
+    st.image("https://static.streamlit.io/examples/cat.jpg")
+    
 if selected == "Model":
   st.title("Model")
 #first page data analysis (skip)
