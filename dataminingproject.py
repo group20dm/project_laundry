@@ -14,6 +14,7 @@ with st.sidebar:
 if selected == "Data Analysis":
   st.title("Data Analysis")
   
+  st.header("Dataset")
   df = pd.read_csv('dataset.csv')
   st.dataframe(df)
   
