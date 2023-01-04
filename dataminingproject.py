@@ -26,13 +26,10 @@ if selected == "Data Analysis":
   col1, col2 = st.columns(2)
   with col1:
     st.header("Google map")
-    st.map(df)
-    lat = df.latitude.astype(float)
-    lng = df.longitude.astype(float)
-    heat_df=df[["lat","lng"]]
-    heat_data=list(zip(df.lat, df.lng))
-    folium.plugins.HeatMap(heat_data).add_to(m)
-    m
+    mapobj = folium.Map(df)
+    Heatmap(df).add_to(mapobj)
+#     st.map(df)
+    
   with col2:
     st.header("2nd col")
     st.image("https://static.streamlit.io/examples/cat.jpg")
