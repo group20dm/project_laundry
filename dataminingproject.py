@@ -27,7 +27,10 @@ if selected == "Data Analysis":
   with col1:
     st.header("Google map")
     st.map(df)
-    HeatMap(df)
+    lat = df.latitude.tolist()
+    lng = df.longitude.tolist()
+    HeatMap(list(zip(lat, lng))).add_to(m)
+    m
   with col2:
     st.header("2nd col")
     st.image("https://static.streamlit.io/examples/cat.jpg")
