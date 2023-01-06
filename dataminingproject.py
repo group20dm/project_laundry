@@ -42,10 +42,6 @@ if selected == "Data Analysis":
     # Plot it on the map
     HeatMap(heat_data).add_to(map_heatmap)
     FastMarkerCluster(heat_data).add_to(map_heatmap)
-    folium.Marker(
-        popup="Customer",
-        icon=folium.Icon(color="green", icon="ok-sign"),
-    ).add_to(map_heatmap)
     st_folium(map_heatmap)
     
   with col2:
