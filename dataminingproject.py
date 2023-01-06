@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
+import streamlit_folium
 
 from streamlit_folium import folium_static
 from folium.plugins import HeatMap
