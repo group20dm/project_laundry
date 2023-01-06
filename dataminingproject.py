@@ -29,7 +29,7 @@ if selected == "Data Analysis":
     st.header("Google map")
     m = leafmap.Map()
     m.add_heatmap(
-    df,
+    data = df,
     latitude="latitude",
     longitude="longitude",
     name="Heat map",
