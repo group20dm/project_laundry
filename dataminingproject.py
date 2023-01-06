@@ -26,11 +26,15 @@ if selected == "Data Analysis":
   col1, col2 = st.columns(2)
   with col1:
     st.header("Google map")
-    mapobj = folium.Map(location=[df.latitude, df.longitude])
-    lat = df.latitude.tolist()
-    lng = df.longitude.tolist()
-    Heatmap(df).add_to(mapobj)
-#     st.map(df)
+    m = leafmap.Map(center=[40, -100], zoom=4, tiles="stamentoner")
+    m.add_heatmap(
+    df,
+    latitude="latitude",
+    longitude="longitude",
+    value="pop_max",
+    name="Heat map",
+    radius=20,
+)
     
   with col2:
     st.header("2nd col")
