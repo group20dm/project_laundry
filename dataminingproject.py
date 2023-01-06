@@ -4,7 +4,7 @@ import folium
 import geopandas
 
 from streamlit_folium import st_folium
-from folium.plugins import HeatMap, MarkerCluster
+from folium.plugins import HeatMap, FastMarkerCluster
 from streamlit_option_menu import option_menu
 
 st.set_page_config(layout="wide")
@@ -41,7 +41,11 @@ if selected == "Data Analysis":
 
     # Plot it on the map
     HeatMap(heat_data).add_to(map_heatmap)
-    MarkerCluster(heat_data).add_to(map_heatmap)
+    FastMarkerCluster(heat_data).add_to(map_heatmap)
+    folium.Marker(
+        popup="Customer",
+        icon=folium.Icon(color="green", icon="ok-sign"),
+    ).add_to(map_heatmap)
     st_folium(map_heatmap)
     
   with col2:
