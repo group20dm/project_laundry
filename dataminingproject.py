@@ -29,7 +29,7 @@ if selected == "Data Analysis":
   with col1:
     st.header("Google map")
     map_heatmap = folium.Map(location=[3.060525411,101.6105832], zoom_start=11)
-
+    
     # Filter the DF for columns, then remove NaNs
     heat_df = df[["latitude", "longitude"]]
     heat_df = heat_df.dropna(axis=0, subset=["latitude", "longitude"])
@@ -42,6 +42,21 @@ if selected == "Data Analysis":
     # Plot it on the map
     HeatMap(heat_data).add_to(map_heatmap)
     st_folium(map_heatmap)
+    
+    map_2 = folium.Map(location=[3.060525411,101.6105832], zoom_start=11)
+    map_2.choropleth(
+        geo_data=data_geo,
+        name='choropleth',
+        data=heat_data,
+        # col: feature of interest
+        columns=['zipcode', col],
+        key_on='feature.properties.ZIPCODE',
+        fill_color='OrRd',
+        fill_opacity=0.9,
+        line_opacity=0.2,
+        legend_name='house ' + col
+    )
+    st_folium(map_2)
     
   with col2:
     st.header("2nd col")
