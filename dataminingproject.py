@@ -26,7 +26,9 @@ if selected == "Data Analysis":
   col1, col2 = st.columns(2)
   with col1:
     st.header("Google map")
-    mapobj = folium.Map(df)
+    mapobj = folium.Map(location=[df.latitude, df.longitude])
+    lat = df.latitude.tolist()
+    lng = df.longitude.tolist()
     Heatmap(df).add_to(mapobj)
 #     st.map(df)
     
