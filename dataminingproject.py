@@ -49,7 +49,18 @@ if selected == "Data Analysis":
   with col2:
     st.header("2nd col")
     msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
-    msia_geojson.plot()
+    maps= folium.Choropleth(geo_data = msia_geojson,
+                           data = df,
+                           columns=['District',dicts[data]],
+                           key_on='feature.properties.name',
+                           threshold_scale=threshold_scale,
+                           fill_color='YlOrRd',
+                           fill_opacity=0.7,
+                           line_opacity=0.2,
+                           legend_name=dicts[data],
+                           highlight=True,
+                           reset=True).add_to(map_sby)
+   folium_static(map_sby)
     
 #second page
 if selected == "Feature Selection & SMOTE":
