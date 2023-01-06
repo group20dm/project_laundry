@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
-
+import geopandas
 
 from streamlit_folium import st_folium
 from folium.plugins import HeatMap
@@ -43,20 +43,8 @@ if selected == "Data Analysis":
     HeatMap(heat_data).add_to(map_heatmap)
     st_folium(map_heatmap)
     
-    map_2 = folium.Map(location=[3.060525411,101.6105832], zoom_start=11)
-    map_2.choropleth(
-        geo_data=data_geo,
-        name='choropleth',
-        data=heat_data,
-        # col: feature of interest
-        columns=['zipcode', col],
-        key_on='feature.properties.ZIPCODE',
-        fill_color='OrRd',
-        fill_opacity=0.9,
-        line_opacity=0.2,
-        legend_name='house ' + col
-    )
-    st_folium(map_2)
+    msia_geojson=geopandas.read_file('project_laundry/stanford-zd362bc5680-geojson.json')
+    msia_geojson.plot()
     
   with col2:
     st.header("2nd col")
