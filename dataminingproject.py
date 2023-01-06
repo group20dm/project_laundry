@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import folium
-import leafmap
+from folium.plugins import HeatMap
 
 from folium.plugins import HeatMap
 from streamlit_option_menu import option_menu
@@ -27,13 +27,21 @@ if selected == "Data Analysis":
   col1, col2 = st.columns(2)
   with col1:
     st.header("Google map")
-    m = leafmap.Map()
-    m.add_heatmap(
-    data = df,
-    latitude="latitude",
-    longitude="longitude",
-    name="Heat map",
-)
+    map_heatmap = folium.Map(location=[2.91231642,101.6579478], zoom_start=11)
+
+    # Filter the DF for columns, then remove NaNs
+    heat_df = df[["latitude", "longitude"]]
+    heat_df = heat_df.dropna(axis=0, subset=["latitude", "longitude"])
+
+    # List comprehension to make list of lists
+    heat_data = [
+        [row["latitude"], row["longitude"]] for index, row in heat_df.iterrows()
+    ]
+
+    # Plot it on the map
+    HeatMap(heat_data).add_to(map_heatmap)
+
+
     
   with col2:
     st.header("2nd col")
