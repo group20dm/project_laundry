@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import folium
 
+from streamlit_folium import folium_static
 from folium.plugins import HeatMap
 from streamlit_option_menu import option_menu
 
@@ -25,7 +26,7 @@ if selected == "Data Analysis":
   #columns
   col1, col2 = st.columns(2)
   with col1:
-    st.header("Google map")
+    st.subheader("Google map")
     map_heatmap = folium.Map(location=[2.91231642,101.6579478], zoom_start=11)
 
     # Filter the DF for columns, then remove NaNs
