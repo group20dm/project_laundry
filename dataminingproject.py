@@ -40,7 +40,7 @@ if selected == "Data Analysis":
 
     # Plot it on the map
     HeatMap(heat_data).add_to(map_heatmap)
-    folium_static(map_heatmap)
+    st_folium(map_heatmap)
     
   with col2:
     st.header("2nd col")
