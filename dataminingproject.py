@@ -49,8 +49,8 @@ if selected == "Data Analysis":
   with col2:
     st.header("2nd col")
 #     msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
-    MarkerCluster(heat_data).add_to(m)
-    st_folium(m)
+    MarkerCluster(heat_data).add_to(map_heatmap)
+    st_folium(map_heatmap)
     
 #second page
 if selected == "Feature Selection & SMOTE":
