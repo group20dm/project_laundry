@@ -43,7 +43,7 @@ if selected == "Data Analysis":
     HeatMap(heat_data).add_to(map_heatmap)
     st_folium(map_heatmap)
     
-    msia_geojson=geopandas.read_file('project_laundry/stanford-zd362bc5680-geojson.json')
+    msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
     msia_geojson.plot()
     
   with col2:
