@@ -4,7 +4,7 @@ import folium
 import geopandas
 
 from streamlit_folium import st_folium
-from folium.plugins import HeatMap
+from folium.plugins import HeatMap, MarkerCluster
 from streamlit_option_menu import option_menu
 
 st.set_page_config(layout="wide")
@@ -48,16 +48,9 @@ if selected == "Data Analysis":
     
   with col2:
     st.header("2nd col")
-    msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
-    maps= folium.Choropleth(geo_data = msia_geojson,
-                           data = df,
-                           key_on='feature.properties.name',
-                           fill_color='YlOrRd',
-                           fill_opacity=0.7,
-                           line_opacity=0.2,
-                           highlight=True,
-                           reset=True).add_to(map_sby)
-    st_folium(map_sby)
+#     msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
+    MarkerCluster(heat_data).add_to(m)
+    st_folium(m)
     
 #second page
 if selected == "Feature Selection & SMOTE":
