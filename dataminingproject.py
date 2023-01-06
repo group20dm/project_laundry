@@ -55,7 +55,6 @@ if selected == "Data Analysis":
                            fill_color='YlOrRd',
                            fill_opacity=0.7,
                            line_opacity=0.2,
-                           legend_name=dicts[data],
                            highlight=True,
                            reset=True).add_to(map_sby)
     st_folium(map_sby)
