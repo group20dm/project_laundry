@@ -51,7 +51,6 @@ if selected == "Data Analysis":
     msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
     maps= folium.Choropleth(geo_data = msia_geojson,
                            data = df,
-                           columns=['District',dicts[data]],
                            key_on='feature.properties.name',
                            threshold_scale=threshold_scale,
                            fill_color='YlOrRd',
