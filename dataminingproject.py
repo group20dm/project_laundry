@@ -52,7 +52,6 @@ if selected == "Data Analysis":
     maps= folium.Choropleth(geo_data = msia_geojson,
                            data = df,
                            key_on='feature.properties.name',
-                           threshold_scale=threshold_scale,
                            fill_color='YlOrRd',
                            fill_opacity=0.7,
                            line_opacity=0.2,
