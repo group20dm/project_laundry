@@ -60,7 +60,7 @@ if selected == "Data Analysis":
                            legend_name=dicts[data],
                            highlight=True,
                            reset=True).add_to(map_sby)
-   folium_static(map_sby)
+    st_folium(map_sby)
     
 #second page
 if selected == "Feature Selection & SMOTE":
