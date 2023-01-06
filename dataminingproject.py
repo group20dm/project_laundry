@@ -43,12 +43,13 @@ if selected == "Data Analysis":
     HeatMap(heat_data).add_to(map_heatmap)
     st_folium(map_heatmap)
     
-    msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
-    msia_geojson.plot()
+#     msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
+#     msia_geojson.plot()
     
   with col2:
     st.header("2nd col")
-    st.image("https://static.streamlit.io/examples/cat.jpg")
+    msia_geojson=geopandas.read_file('stanford-zd362bc5680-geojson.json')
+    msia_geojson.plot()
     
 #second page
 if selected == "Feature Selection & SMOTE":
