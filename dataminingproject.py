@@ -49,7 +49,7 @@ if selected == "Data Analysis":
     
   with col2:
     st.header("2nd col")
-    days_count = data.groupby("date").size().reset_index()
+    days_count = df.groupby("date").size().reset_index()
 
     days_count.columns = ["date", "total_cust"]
 
