@@ -85,7 +85,8 @@ if selected == "Data Analysis":
     st.write(perc_sale_fig)
   
   with col2:
-    sns_heatmap, ax = plt.subplots(figsize=(10, 10))
+    st.header("Relationships between Variables")
+    sns_heatmap, ax = plt.subplots(figsize=(8, 8))
     sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
     st.write(sns_heatmap) 
     
