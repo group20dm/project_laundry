@@ -4,6 +4,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import json
 import folium
+import xgboost as xgb
 
 import geopandas as gpd
 import plotly.express as px
@@ -14,6 +15,26 @@ from plotly.subplots import make_subplots
 from streamlit_folium import st_folium,folium_static
 from folium.plugins import HeatMap, FastMarkerCluster
 from streamlit_option_menu import option_menu
+
+from boruta import BorutaPy
+
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestRegressor
+
+from sklearn.model_selection import train_test_split
+from sklearn.feature_selection import RFE
+
+from sklearn.multiclass import OneVsRestClassifier
+
+from sklearn.metrics import classification_report
+from sklearn.multioutput import ClassifierChain
+from sklearn.linear_model import LogisticRegression
+
+from sklearn.preprocessing import normalize
+
+from ml_tools import *
+
+from imblearn.over_sampling import SMOTE
 
 st.set_page_config(layout="wide")
 
@@ -212,17 +233,30 @@ if selected == "Data Analysis":
   
   
 #second page
-if selected == "Feature Selection & SMOTE":
-  st.title("Feature Selection & SMOTE")
+if selected == "Classification":
+  st.title("Classification")
+  st.header("Feature Selection")
   
   #columns
   col1, col2 = st.columns(2)
   with col1:
-    st.header("Boruta")
-    st.image("https://static.streamlit.io/examples/cat.jpg")
+    st.header("Baseline Model (without Feature Selection & SMOTE)")
+    clf = xgb.XGBClassifier(random_state = 42, n_jobs = -1)
+
+    models = {"XGBoost": xgb.XGBClassifier(random_state = 42, n_jobs = -1)}
+    # model = clf
+    # model.fit(X_train, y_train)
+    # model.predict_proba(X_test)
+
+    models = Model(models)
+    metric = Metric(X_train, X_test, y_train, y_test, "binary")
+    metric_score = metric.score(models = models)
+    st.write(metric_score)
+    
   with col2:
     st.header("RFE")
-    st.image("https://static.streamlit.io/examples/cat.jpg")
+    conf_mat = metric.conf_mat(figsize = (8,3))
+    st.write(conf_mat)
     
 #third page
 if selected == "Model":
