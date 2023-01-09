@@ -38,7 +38,7 @@ if selected == "Data Analysis":
   data["date"] = pd.to_datetime(data["date"], infer_datetime_format = True)
   
   #columns
-  col1, col2 = st.columns([1.5,2])
+  col1, col2 = st.columns([1.5,3])
   with col1:
     st.header("Google map")
     map_heatmap = folium.Map(location=[3.060525411,101.6105832], zoom_start=11,height = 30, width = 60)
