@@ -10,3 +10,4 @@ shapely
 sklearn
 boruta
 imblearn
+xgboost
