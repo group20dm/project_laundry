@@ -60,9 +60,9 @@ if selected == "Data Analysis":
 
     days_count.columns = ["date", "total_cust"]
 
-    fig = px.line(days_count, x = "date", y = "total_cust")
-    fig.update_layout(title = "Total Number of Customers in Each Days", xaxis_title = "Date", yaxis_title = "Total Number of Customers")
-    st.write(fig)
+    total_cust_fig = px.line(days_count, x = "date", y = "total_cust")
+    total_cust_fig.update_layout(title = "Total Number of Customers in Each Days", xaxis_title = "Date", yaxis_title = "Total Number of Customers")
+    st.write(total_cust_fig)
   
   with col3:
     sales = data.copy()
@@ -70,14 +70,14 @@ if selected == "Data Analysis":
     sales = sales.groupby("month_year").totalspent_rm.sum().reset_index()
     sales.columns = ["month_year", "sales"]
 
-    fig  = make_subplots(1, 2, specs = [[{"type": "domain"}, {"type": "xy"}]], 
+    perc_sale_fig  = make_subplots(1, 2, specs = [[{"type": "domain"}, {"type": "xy"}]], 
                         subplot_titles = ["Percentage of Sales<br>in Each Year and Month", "Total Sales in Each Year and Month"])
-    fig.add_trace(go.Pie(hole= .5, labels= sales.month_year, values= sales.sales, legendgroup = "1"), row = 1, col = 1)
-    fig.add_trace(go.Scatter(x = sales.month_year, y = sales.sales, showlegend = False, legendgroup = "2"), row = 1, col = 2)
+    perc_sale_fig.add_trace(go.Pie(hole= .5, labels= sales.month_year, values= sales.sales, legendgroup = "1"), row = 1, col = 1)
+    perc_sale_fig.add_trace(go.Scatter(x = sales.month_year, y = sales.sales, showlegend = False, legendgroup = "2"), row = 1, col = 2)
 
-    fig.update_layout(margin = {"l": 0, "r": 0, "b": 0, "t": 50}, legend_title_text = "Year and Month", 
+    perc_sale_fig.update_layout(margin = {"l": 0, "r": 0, "b": 0, "t": 50}, legend_title_text = "Year and Month", 
                      yaxis1_title = "Year and Month", xaxis1_title = "Total Sales (RM)")
-    st.write(fig)
+    st.write(perc_sale_fig)
 #second page
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
