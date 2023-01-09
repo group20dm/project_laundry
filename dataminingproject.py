@@ -81,7 +81,7 @@ if selected == "Data Analysis":
                                   highlight_function=lambda x: {'weight':4,'fillColor':'grey'},
 
                               ).add_to(m)
-  st_folium(m,width = 500)
+  st_folium(m,width = 500, height= 30)
   #columns
   col1, col2 = st.columns([1.5,2])
   with col1:
