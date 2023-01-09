@@ -182,7 +182,7 @@ if selected == "Data Analysis":
     ax.set_title(title)
 
     return ax
-  display_missing, ax = plt.subplots(figsize=(8, 2))
+  display_missing, ax = plt.subplots(figsize=(10, 5))
   display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
   st.write(display_missing)
   #
