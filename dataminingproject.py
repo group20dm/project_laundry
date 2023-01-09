@@ -80,6 +80,11 @@ if selected == "Data Analysis":
     perc_sale_fig.update_layout(margin = {"l": 0, "r": 0, "b": 0, "t": 50}, legend_title_text = "Year and Month", 
                      yaxis1_title = "Year and Month", xaxis1_title = "Total Sales (RM)")
     st.write(perc_sale_fig)
+  
+  with col2:
+    sns_heatmap = sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu")
+    st.write(sns_heatmap)
+    
 #second page
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
