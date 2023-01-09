@@ -132,7 +132,19 @@ if selected == "Data Analysis":
     sns_countplot, ax = plt.subplots(figsize=(8, 8))
     sns.countplot(x = "washer_no", data = data,ax=ax)
     st.write(sns_countplot)
+  
+  col1, col2 = st.columns([2,2])
+  def display_missing_counts(data, title, ax = None):
+    ax = data.isna().sum().plot.bar(ax = ax)
+    ax.set_xlabel("Feature")
+    ax.set_ylabel("Number of Missing Values")
+    ax.set_title(title)
+    
+    return ax
 
+  missing_counts = display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling")
+  st.plotly_chart(missing_counts,use_container_width = True)
+  
 #second page
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
