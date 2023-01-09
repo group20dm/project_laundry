@@ -112,7 +112,7 @@ if selected == "Data Analysis":
                      yaxis1_title = "Year and Month", xaxis1_title = "Total Sales (RM)")
     st.plotly_chart(perc_sale_fig,use_container_width = True)
     
-  col1, col2 = st.columns([1.5,2.5])
+  col1, col2, col3 = st.columns([1.5,1,2.5])
   with col1:
     st.header("Relationships between Variables")
     sns_heatmap, ax = plt.subplots(figsize=(8, 8))
@@ -126,6 +126,13 @@ if selected == "Data Analysis":
 
     categ_type = pd.crosstab(customers.kids_category, customers.pants_type)
     st.write(categ_type)
+    
+  with col2:
+    st.header("Do we need to perform data imbalance treatment?")
+    sns_countplot, ax = plt.subplots(figsize=(8, 8))
+    sns.countplot(x = "washer_no", data = data,ax=ax)
+    st.write(sns_countplot)
+
 #second page
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
