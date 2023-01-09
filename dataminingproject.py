@@ -35,7 +35,7 @@ if selected == "Data Analysis":
   data["date"] = pd.to_datetime(data["date"], infer_datetime_format = True)
   
   #columns
-  col1, col2, col3, col4 = st.columns(4)
+  col1, col2 = st.columns(2)
   with col1:
     st.header("Google map")
     map_heatmap = folium.Map(location=[3.060525411,101.6105832], zoom_start=11,height = 50, width = 50)
@@ -64,7 +64,7 @@ if selected == "Data Analysis":
     total_cust_fig.update_layout(title = "Total Number of Customers in Each Days", xaxis_title = "Date", yaxis_title = "Total Number of Customers")
     st.write(total_cust_fig)
   
-  with col3:
+  with col1:
     st.header("Percentage of Sales in Each Month and Year")
     
     sales = data.copy()
