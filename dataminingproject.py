@@ -11,7 +11,7 @@ import plotly.graph_objects as go
 
 from shapely.geometry import shape
 from plotly.subplots import make_subplots
-from streamlit_folium import st_folium
+from streamlit_folium import st_folium,folium_static
 from folium.plugins import HeatMap, FastMarkerCluster
 from streamlit_option_menu import option_menu
 
@@ -81,7 +81,8 @@ if selected == "Data Analysis":
                                   highlight_function=lambda x: {'weight':4,'fillColor':'grey'},
 
                               ).add_to(m)
-  st_folium(m,width = 500, height= 10)
+  folium_static(m)
+  
   #columns
   col1, col2 = st.columns([1.5,2])
   with col1:
