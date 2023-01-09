@@ -84,7 +84,7 @@ if selected == "Data Analysis":
   folium_static(m,width = 1450)
   
   #columns
-  col1, col2 = st.columns([1.5,2])
+  col1, col2 = st.columns([1.3,2])
   with col1:
     st.header("Total Number of Customers in each Days")
     days_count = data.groupby("date").size().reset_index()
