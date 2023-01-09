@@ -67,7 +67,7 @@ if selected == "Data Analysis":
     total_cust_fig.update_layout(title = "Total Number of Customers in Each Days", xaxis_title = "Date", yaxis_title = "Total Number of Customers")
     st.write(total_cust_fig)
     
-  col1, col2 = st.columns([2,1])
+  col1, col2 = st.columns([1.5,1])
   with col1:
     st.header("Percentage of Sales in Each Month and Year")
     
