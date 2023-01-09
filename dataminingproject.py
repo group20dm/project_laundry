@@ -134,32 +134,32 @@ if selected == "Data Analysis":
     st.write(sns_countplot)
   
   st.header("Outliers")
-    def display_outliers(data, title):
-      outliers = data.select_dtypes([float, int])
-      n_col = len(outliers.columns)
+  def display_outliers(data, title):
+    outliers = data.select_dtypes([float, int])
+    n_col = len(outliers.columns)
 
-      fig, axes = plt.subplots(1, n_col, figsize = (15, 5))
-      for idx, col in enumerate(outliers.columns):
-          axes[idx] = sns.boxplot(y = col, data = outliers, ax = axes[idx])
+    fig, axes = plt.subplots(1, n_col, figsize = (15, 5))
+    for idx, col in enumerate(outliers.columns):
+        axes[idx] = sns.boxplot(y = col, data = outliers, ax = axes[idx])
 
-      fig.suptitle(title)
-      fig.tight_layout()
-      
-      return fig
-    outliers = display_outliers(data, "Box plot for each Numerical Features Before Missing Values Handling")
-    st.write(outliers)
+    fig.suptitle(title)
+    fig.tight_layout()
+
+    return fig
+  outliers = display_outliers(data, "Box plot for each Numerical Features Before Missing Values Handling")
+  st.write(outliers)
   
   st.header("Missing Values Handling")
-    def display_missing_counts(data, title, ax = None):
-      ax = data.isna().sum().plot.bar(ax = ax)
-      ax.set_xlabel("Feature")
-      ax.set_ylabel("Number of Missing Values")
-      ax.set_title(title)
+  def display_missing_counts(data, title, ax = None):
+    ax = data.isna().sum().plot.bar(ax = ax)
+    ax.set_xlabel("Feature")
+    ax.set_ylabel("Number of Missing Values")
+    ax.set_title(title)
 
-      return ax
-    display_missing, ax = plt.subplots(figsize=(8, 8))
-    display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
-    st.write(display_missing)
+    return ax
+  display_missing, ax = plt.subplots(figsize=(8, 8))
+  display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
+  st.write(display_missing)
     
     
 #second page
