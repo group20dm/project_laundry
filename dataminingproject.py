@@ -48,7 +48,7 @@ if selected == "Data Analysis":
     analysis = gpd.GeoDataFrame(analysis, geometry = analysis.city_geometry, crs = "EPSG:4326")
     analysis.drop(columns = ["city_geometry"], inplace = True)
 
-    m = folium.Map(location=[data.latitude.min(), data.longitude.max()], zoom_start = 10)
+    m = folium.Map(location=[data.latitude.min(), data.longitude.max()], zoom_start = 10, width = 20)
 
     folium.Choropleth(
         geo_data=analysis,
