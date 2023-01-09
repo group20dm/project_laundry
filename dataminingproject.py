@@ -41,22 +41,22 @@ if selected == "Data Analysis":
     map_heatmap = folium.Map(location=[3.060525411,101.6105832], zoom_start=11)
     
     # Filter the DF for columns, then remove NaNs
-    heat_df = df[["latitude", "longitude"]]
-    heat_df = heat_df.dropna(axis=0, subset=["latitude", "longitude"])
+    heat_data = data[["latitude", "longitude"]]
+    heat_data = heat_data.dropna(axis=0, subset=["latitude", "longitude"])
 
     # List comprehension to make list of lists
-    heat_data = [
-        [row["latitude"], row["longitude"]] for index, row in heat_df.iterrows()
+    heat_list = [
+        [row["latitude"], row["longitude"]] for index, row in heat_data.iterrows()
     ]
 
     # Plot it on the map
-    HeatMap(heat_data).add_to(map_heatmap)
-    FastMarkerCluster(heat_data).add_to(map_heatmap)
+    HeatMap(heat_list).add_to(map_heatmap)
+    FastMarkerCluster(heat_list).add_to(map_heatmap)
     st_folium(map_heatmap)
     
   with col2:
     st.header("2nd col")
-    days_count = df.groupby("date").size().reset_index()
+    days_count = data.groupby("date").size().reset_index()
 
     days_count.columns = ["date", "total_cust"]
 
