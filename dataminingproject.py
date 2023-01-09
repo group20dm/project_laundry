@@ -84,7 +84,7 @@ if selected == "Data Analysis":
   
   with col2:
     sns_heatmap = sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu")
-    st.write(sns_heatmap)
+    st.write(sns_heatmap) 
     
 #second page
 if selected == "Feature Selection & SMOTE":
