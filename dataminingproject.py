@@ -143,7 +143,7 @@ if selected == "Data Analysis":
     return ax
 
   
-  st.write(display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling"))
+  st.write(display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax))
   
 #second page
 if selected == "Feature Selection & SMOTE":
