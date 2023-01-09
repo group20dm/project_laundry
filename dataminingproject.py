@@ -151,7 +151,7 @@ if selected == "Data Analysis":
   
   st.header("Missing Values Handling")
   def display_missing_counts(data, title, ax = None):
-    ax = data.isna().sum().plot.barh(ax = ax)
+    ax = data.isna().sum().plot.bar(ax = ax)
     ax.set_xlabel("Feature")
     ax.set_ylabel("Number of Missing Values")
     ax.set_title(title)
