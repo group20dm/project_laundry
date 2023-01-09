@@ -6,3 +6,4 @@ geopandas
 plotly
 seaborn
 matplotlib
+shapely
