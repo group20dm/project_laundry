@@ -8,6 +8,7 @@ import geopandas
 import plotly.express as px
 import plotly.graph_objects as go
 
+from shapely.geometry import shape
 from plotly.subplots import make_subplots
 from streamlit_folium import st_folium
 from folium.plugins import HeatMap, FastMarkerCluster
