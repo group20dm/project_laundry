@@ -199,7 +199,7 @@ if selected == "Data Analysis":
   for col in other_missing_values:
       data_copy[col] = data_copy[col].fillna(data[col].median())
   #
-  compare_missing_outliers, axes = plt.subplots(1,2, figsize = (10, 5))
+  compare_missing_outliers, axes = plt.subplots(1,2, figsize = (15, 5))
   display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", axes[0])
   display_missing_counts(data_copy, "Number of Missing Values in each Features \nAfter Missing Values Handling", axes[1])
 
