@@ -237,6 +237,13 @@ if selected == "Classification":
   st.title("Classification")
   st.header("Feature Selection")
   
+  X = data.drop(columns = "washer_no")
+  y = data.washer_no.copy()
+
+  y[y != 3] = 0
+  y[y == 3] = 1
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
+  
   #columns
   col1, col2 = st.columns(2)
   with col1:
