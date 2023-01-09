@@ -143,7 +143,7 @@ if selected == "Data Analysis":
     return ax
 
   missing_counts = display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling")
-  st.plotly_chart(missing_counts,use_container_width = True)
+  st.write(missing_counts)
   
 #second page
 if selected == "Feature Selection & SMOTE":
