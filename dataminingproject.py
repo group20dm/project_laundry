@@ -83,7 +83,7 @@ if selected == "Data Analysis":
 
     perc_sale_fig.update_layout(margin = {"l": 0, "r": 0, "b": 0, "t": 50}, legend_title_text = "Year and Month", 
                      yaxis1_title = "Year and Month", xaxis1_title = "Total Sales (RM)")
-    st.plotly_chart(perc_sale_fig,use_container_width = true)
+    st.plotly_chart(perc_sale_fig,use_container_width = True)
   
   with col2:
     st.header("Relationships between Variables")
