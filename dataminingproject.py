@@ -133,20 +133,7 @@ if selected == "Data Analysis":
     sns.countplot(x = "washer_no", data = data,ax=ax)
     st.write(sns_countplot)
   
-  col1, col2 = st.columns([2,2])
-  with col1:
-    def display_missing_counts(data, title, ax = None):
-      ax = data.isna().sum().plot.bar(ax = ax)
-      ax.set_xlabel("Feature")
-      ax.set_ylabel("Number of Missing Values")
-      ax.set_title(title)
-
-      return ax
-    display_missing, ax = plt.subplots(figsize=(8, 8))
-    display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
-    st.write(display_missing)
-  
-  with col2:
+  st.header("Outliers")
     def display_outliers(data, title):
       outliers = data.select_dtypes([float, int])
       n_col = len(outliers.columns)
@@ -161,6 +148,20 @@ if selected == "Data Analysis":
       return fig
     outliers = display_outliers(data, "Box plot for each Numerical Features Before Missing Values Handling")
     st.write(outliers)
+  
+  st.header("Missing Values Handling")
+    def display_missing_counts(data, title, ax = None):
+      ax = data.isna().sum().plot.bar(ax = ax)
+      ax.set_xlabel("Feature")
+      ax.set_ylabel("Number of Missing Values")
+      ax.set_title(title)
+
+      return ax
+    display_missing, ax = plt.subplots(figsize=(8, 8))
+    display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
+    st.write(display_missing)
+    
+    
 #second page
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
