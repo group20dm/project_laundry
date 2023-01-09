@@ -141,9 +141,9 @@ if selected == "Data Analysis":
     ax.set_title(title)
     
     return ax
-  
-  asd = display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling")
-  st.write(asd)
+  display_missing, ax = plt.subplots(figsize=(8, 8))
+  display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
+  st.write(display_missing)
   
 #second page
 if selected == "Feature Selection & SMOTE":
