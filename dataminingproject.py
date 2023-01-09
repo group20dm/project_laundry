@@ -85,8 +85,9 @@ if selected == "Data Analysis":
     st.write(perc_sale_fig)
   
   with col2:
-    sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu")
-    plt.show() 
+    sns_heatmap, ax = plt.subplots()
+    sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
+    st.write(sns_heatmap) 
     
 #second page
 if selected == "Feature Selection & SMOTE":
