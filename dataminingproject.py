@@ -39,7 +39,7 @@ if selected == "Data Analysis":
 
   data["date"] = pd.to_datetime(data["date"], infer_datetime_format = True)
   
-  st.header("Choropleth map")
+  st.header("Total Sales in Each Area")
   analysis = data[["city", "city_geometry", "totalspent_rm"]].groupby(["city", "city_geometry"]).sum().reset_index()
   analysis.city_geometry = analysis.city_geometry.apply(lambda x: shape(json.loads(x)["geometries"][0]))
   analysis = gpd.GeoDataFrame(analysis, geometry = analysis.city_geometry, crs = "EPSG:4326")
