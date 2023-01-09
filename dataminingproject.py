@@ -85,9 +85,8 @@ if selected == "Data Analysis":
     st.write(perc_sale_fig)
   
   with col2:
-    sns_heatmap, ax = plt.subplots()
+    sns_heatmap, ax = plt.subplots(figsize=(5, 5))
     sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
-    sns_heatmap = plt.figure(figsize=(20, 5))
     st.write(sns_heatmap) 
     
 #second page
