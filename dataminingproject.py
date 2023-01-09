@@ -114,14 +114,17 @@ if selected == "Data Analysis":
     
   col1, col2 = st.columns([1.5,1])
   with col1:
-    st.header("asdas")
-    st.image("https://static.streamlit.io/examples/cat.jpg")
-  
-  with col2:
     st.header("Relationships between Variables")
     sns_heatmap, ax = plt.subplots(figsize=(8, 8))
     sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
     st.write(sns_heatmap) 
+  
+  with col2:
+    st.header("What types of customers will likely to choose Washer No. 3 and Dryer No. 10?")
+    customers = data[(data.washer_no == 3) & (data.dryer_no == 10)]
+    customers = customers.dropna(axis = 1)
+
+    pd.crosstab(customers.kids_category, customers.pants_type)
     
 #second page
 if selected == "Feature Selection & SMOTE":
