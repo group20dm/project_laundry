@@ -124,8 +124,8 @@ if selected == "Data Analysis":
     customers = data[(data.washer_no == 3) & (data.dryer_no == 10)]
     customers = customers.dropna(axis = 1)
 
-    pd.crosstab(customers.kids_category, customers.pants_type)
-    
+    categ_type = pd.crosstab(customers.kids_category, customers.pants_type)
+    st.write(categ_type)
 #second page
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
