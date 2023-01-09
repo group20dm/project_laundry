@@ -86,10 +86,6 @@ if selected == "Data Analysis":
   #columns
   col1, col2 = st.columns([1.5,2])
   with col1:
-    st.header("adasd")
-    st.image("https://static.streamlit.io/examples/cat.jpg")
-    
-  with col2:
     st.header("Total Number of Customers in each Days")
     days_count = data.groupby("date").size().reset_index()
 
@@ -99,8 +95,7 @@ if selected == "Data Analysis":
     total_cust_fig.update_layout(title = "Total Number of Customers in Each Days", xaxis_title = "Date", yaxis_title = "Total Number of Customers")
     st.plotly_chart(total_cust_fig,use_container_width = True)
     
-  col1, col2 = st.columns([1.5,1])
-  with col1:
+  with col2:
     st.header("Percentage of Sales in Each Month and Year")
     
     sales = data.copy()
@@ -116,6 +111,11 @@ if selected == "Data Analysis":
     perc_sale_fig.update_layout(margin = {"l": 0, "r": 0, "b": 0, "t": 50}, legend_title_text = "Year and Month", 
                      yaxis1_title = "Year and Month", xaxis1_title = "Total Sales (RM)")
     st.plotly_chart(perc_sale_fig,use_container_width = True)
+    
+  col1, col2 = st.columns([1.5,1])
+  with col1:
+    st.header("asdas")
+    st.image("https://static.streamlit.io/examples/cat.jpg")
   
   with col2:
     st.header("Relationships between Variables")
