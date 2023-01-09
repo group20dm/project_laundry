@@ -112,7 +112,7 @@ if selected == "Data Analysis":
                      yaxis1_title = "Year and Month", xaxis1_title = "Total Sales (RM)")
     st.plotly_chart(perc_sale_fig,use_container_width = True)
     
-  col1, col2, col3 = st.columns([1.5,1.5,2])
+  col1, col2, col3 = st.columns([1.8,1.5,2])
   with col1:
     st.header("Relationships between Variables")
     sns_heatmap, ax = plt.subplots(figsize=(8, 8))
