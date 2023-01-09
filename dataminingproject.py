@@ -48,8 +48,8 @@ if selected == "Data Analysis":
     analysis = gpd.GeoDataFrame(analysis, geometry = analysis.city_geometry, crs = "EPSG:4326")
     analysis.drop(columns = ["city_geometry"], inplace = True)
     
-    f = folium.Figure(width=1000, height=500)
-    m = folium.Map(location=[data.latitude.min(), data.longitude.max()], zoom_start = 10).add_to(f)
+    
+    m = folium.Map(location=[data.latitude.min(), data.longitude.max()], zoom_start = 10)
 
     folium.Choropleth(
         geo_data=analysis,
@@ -84,7 +84,7 @@ if selected == "Data Analysis":
                                     highlight_function=lambda x: {'weight':4,'fillColor':'grey'},
 
                                 ).add_to(m)
-    st_folium(m)
+    st_folium(m,width = 500)
     
   with col2:
     st.header("Total Number of Customers in each Days")
