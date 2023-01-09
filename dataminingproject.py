@@ -28,7 +28,7 @@ if selected == "Data Analysis":
   st.dataframe(df)
   
   #columns
-  col1, col2, col3, col4, col5, col6, col7, col8 = st.columns(8)
+  col1, col2, col3, col4 = st.columns(4)
   with col1:
     st.header("Google map")
     map_heatmap = folium.Map(location=[3.060525411,101.6105832], zoom_start=11)
