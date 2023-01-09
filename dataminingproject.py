@@ -39,52 +39,54 @@ if selected == "Data Analysis":
 
   data["date"] = pd.to_datetime(data["date"], infer_datetime_format = True)
   
+  st.header("Google map")
+  analysis = data[["city", "city_geometry", "totalspent_rm"]].groupby(["city", "city_geometry"]).sum().reset_index()
+  analysis.city_geometry = analysis.city_geometry.apply(lambda x: shape(json.loads(x)["geometries"][0]))
+  analysis = gpd.GeoDataFrame(analysis, geometry = analysis.city_geometry, crs = "EPSG:4326")
+  analysis.drop(columns = ["city_geometry"], inplace = True)
+
+
+  m = folium.Map(location=[data.latitude.min(), data.longitude.max()], zoom_start = 10)
+
+  folium.Choropleth(
+      geo_data=analysis,
+      data=analysis,
+      columns=['city',"totalspent_rm"],
+      key_on="feature.properties.city",
+      fill_color='YlOrRd',
+      fill_opacity=.9,
+      line_opacity=0.2,
+      highlight= True,
+      line_color = "white",
+      name = "Wills",
+      show=False,
+      nan_fill_color = "White"
+  ).add_to(m)
+
+  folium.features.GeoJson(data=analysis,
+                          smooth_factor = 2,
+                          style_function=lambda x: {'color':'black','fillColor':'transparent'},
+                          tooltip=folium.features.GeoJsonTooltip(
+                              fields=["city","totalspent_rm"],
+                              aliases=["Area","Total Sales (RM)"], 
+                              localize=True,
+                              sticky=False,
+                              style="""
+                                  border: 2px solid black;
+                                  border-radius: 5px;
+                              """,
+
+                              max_width=800,),
+
+                                  highlight_function=lambda x: {'weight':4,'fillColor':'grey'},
+
+                              ).add_to(m)
+  st_folium(m,width = 1000)
   #columns
   col1, col2 = st.columns([1.5,2])
   with col1:
-    st.header("Google map")
-    analysis = data[["city", "city_geometry", "totalspent_rm"]].groupby(["city", "city_geometry"]).sum().reset_index()
-    analysis.city_geometry = analysis.city_geometry.apply(lambda x: shape(json.loads(x)["geometries"][0]))
-    analysis = gpd.GeoDataFrame(analysis, geometry = analysis.city_geometry, crs = "EPSG:4326")
-    analysis.drop(columns = ["city_geometry"], inplace = True)
-    
-    
-    m = folium.Map(location=[data.latitude.min(), data.longitude.max()], zoom_start = 10)
-
-    folium.Choropleth(
-        geo_data=analysis,
-        data=analysis,
-        columns=['city',"totalspent_rm"],
-        key_on="feature.properties.city",
-        fill_color='YlOrRd',
-        fill_opacity=.9,
-        line_opacity=0.2,
-        highlight= True,
-        line_color = "white",
-        name = "Wills",
-        show=False,
-        nan_fill_color = "White"
-    ).add_to(m)
-
-    folium.features.GeoJson(data=analysis,
-                            smooth_factor = 2,
-                            style_function=lambda x: {'color':'black','fillColor':'transparent'},
-                            tooltip=folium.features.GeoJsonTooltip(
-                                fields=["city","totalspent_rm"],
-                                aliases=["Area","Total Sales (RM)"], 
-                                localize=True,
-                                sticky=False,
-                                style="""
-                                    border: 2px solid black;
-                                    border-radius: 5px;
-                                """,
-
-                                max_width=800,),
-
-                                    highlight_function=lambda x: {'weight':4,'fillColor':'grey'},
-
-                                ).add_to(m)
-    st_folium(m,width = 1000)
+    st.header("adasd")
+    st.image("https://static.streamlit.io/examples/cat.jpg")
     
   with col2:
     st.header("Total Number of Customers in each Days")
