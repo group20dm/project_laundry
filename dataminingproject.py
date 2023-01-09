@@ -38,7 +38,7 @@ if selected == "Data Analysis":
   col1, col2, col3, col4 = st.columns(4)
   with col1:
     st.header("Google map")
-    map_heatmap = folium.Map(location=[3.060525411,101.6105832], zoom_start=11)
+    map_heatmap = folium.Map(height = 200, weight = 200, location=[3.060525411,101.6105832], zoom_start=11)
     
     # Filter the DF for columns, then remove NaNs
     heat_data = data[["latitude", "longitude"]]
