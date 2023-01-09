@@ -22,7 +22,7 @@ with st.sidebar:
   selected = option_menu (
     menu_title = "Main menu",
     options = ["Data Analysis", "Classification", "Regression"],
-    icons = ["bar-chart-line","box-arrow-down-right","robot"],
+    icons = ["bar-chart-line","diagram-3","graph-up"],
   )
 #first page
 if selected == "Data Analysis":
@@ -40,7 +40,7 @@ if selected == "Data Analysis":
   data["date"] = pd.to_datetime(data["date"], infer_datetime_format = True)
   
   #columns
-  col1, col2 = st.columns(2)
+  col1, col2 = st.columns([1.5,2])
   with col1:
     st.header("Google map")
     analysis = data[["city", "city_geometry", "totalspent_rm"]].groupby(["city", "city_geometry"]).sum().reset_index()
