@@ -40,7 +40,7 @@ if selected == "Data Analysis":
   data["date"] = pd.to_datetime(data["date"], infer_datetime_format = True)
   
   #columns
-  col1, col2 = st.columns()
+  col1, col2 = st.columns(2)
   with col1:
     st.header("Google map")
     analysis = data[["city", "city_geometry", "totalspent_rm"]].groupby(["city", "city_geometry"]).sum().reset_index()
