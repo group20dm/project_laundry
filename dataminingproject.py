@@ -19,7 +19,7 @@ st.set_page_config(layout="wide")
 with st.sidebar:
   selected = option_menu (
     menu_title = "Main menu",
-    options = ["Data Analysis", "Feature Selection & SMOTE", "Model"],
+    options = ["Data Analysis", "Classification", "Regression"],
     icons = ["bar-chart-line","box-arrow-down-right","robot"],
   )
 #first page
@@ -41,21 +41,46 @@ if selected == "Data Analysis":
   col1, col2 = st.columns([3,2])
   with col1:
     st.header("Google map")
-    map_heatmap = folium.Map(location=[3.060525411,101.6105832], zoom_start=11,height = 30, width = 60)
-    
-    # Filter the DF for columns, then remove NaNs
-    heat_data = data[["latitude", "longitude"]]
-    heat_data = heat_data.dropna(axis=0, subset=["latitude", "longitude"])
+    analysis = data[["city", "city_geometry", "totalspent_rm"]].groupby(["city", "city_geometry"]).sum().reset_index()
+    analysis.city_geometry = analysis.city_geometry.apply(lambda x: shape(json.loads(x)["geometries"][0]))
+    analysis = gpd.GeoDataFrame(analysis, geometry = analysis.city_geometry, crs = "EPSG:4326")
+    analysis.drop(columns = ["city_geometry"], inplace = True)
 
-    # List comprehension to make list of lists
-    heat_list = [
-        [row["latitude"], row["longitude"]] for index, row in heat_data.iterrows()
-    ]
+    m = folium.Map(location=[data.latitude.min(), data.longitude.max()], zoom_start = 10)
 
-    # Plot it on the map
-    HeatMap(heat_list).add_to(map_heatmap)
-#     FastMarkerCluster(heat_list).add_to(map_heatmap)
-    st_folium(map_heatmap)
+    folium.Choropleth(
+        geo_data=analysis,
+        data=analysis,
+        columns=['city',"totalspent_rm"],
+        key_on="feature.properties.city",
+        fill_color='YlOrRd',
+        fill_opacity=.9,
+        line_opacity=0.2,
+        highlight= True,
+        line_color = "white",
+        name = "Wills",
+        show=False,
+        nan_fill_color = "White"
+    ).add_to(m)
+
+    folium.features.GeoJson(data=analysis,
+                            smooth_factor = 2,
+                            style_function=lambda x: {'color':'black','fillColor':'transparent'},
+                            tooltip=folium.features.GeoJsonTooltip(
+                                fields=["city","totalspent_rm"],
+                                aliases=["Area","Total Sales (RM)"], 
+                                localize=True,
+                                sticky=False,
+                                style="""
+                                    border: 2px solid black;
+                                    border-radius: 5px;
+                                """,
+
+                                max_width=800,),
+
+                                    highlight_function=lambda x: {'weight':4,'fillColor':'grey'},
+
+                                ).add_to(m)
     
   with col2:
     st.header("Total Number of Customers in each Days")
@@ -65,7 +90,7 @@ if selected == "Data Analysis":
 
     total_cust_fig = px.line(days_count, x = "date", y = "total_cust")
     total_cust_fig.update_layout(title = "Total Number of Customers in Each Days", xaxis_title = "Date", yaxis_title = "Total Number of Customers")
-    st.write(total_cust_fig)
+    st.plotly_chart(total_cust_fig,use_container_width = True)
     
   col1, col2 = st.columns([1.5,1])
   with col1:
