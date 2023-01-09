@@ -27,7 +27,7 @@ if selected == "Data Analysis":
   st.title("Data Analysis")
   
   st.header("Dataset")
-  data = pd.read_csv('dataset.csv')
+  data = pd.read_csv('analytical_dataset.csv')
   st.dataframe(data)
   data.columns = data.columns.str.lower()
   categoricals = data.select_dtypes(include = object)
