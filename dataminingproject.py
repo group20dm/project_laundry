@@ -127,7 +127,7 @@ if selected == "Data Analysis":
     categ_type = pd.crosstab(customers.kids_category, customers.pants_type)
     st.write(categ_type)
     
-  with col2:
+  with col3:
     st.header("Do we need to perform data imbalance treatment?")
     sns_countplot, ax = plt.subplots(figsize=(8, 8))
     sns.countplot(x = "washer_no", data = data,ax=ax)
