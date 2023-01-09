@@ -54,7 +54,7 @@ if selected == "Data Analysis":
 
     # Plot it on the map
     HeatMap(heat_list).add_to(map_heatmap)
-    FastMarkerCluster(heat_list).add_to(map_heatmap)
+#     FastMarkerCluster(heat_list).add_to(map_heatmap)
     st_folium(map_heatmap)
     
   with col2:
