@@ -65,7 +65,8 @@ if selected == "Data Analysis":
     st.write(total_cust_fig)
   
   with col3:
-		st.header("Percentage of Sales in Each Month and Year") 
+    st.header("Percentage of Sales in Each Month and Year")
+    
     sales = data.copy()
     sales["month_year"] = sales.date.dt.strftime('%Y-%m')
     sales = sales.groupby("month_year").totalspent_rm.sum().reset_index()
