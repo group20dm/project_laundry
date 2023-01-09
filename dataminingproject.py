@@ -62,7 +62,7 @@ if selected == "Data Analysis":
 
     fig = px.line(days_count, x = "date", y = "total_cust")
     fig.update_layout(title = "Total Number of Customers in Each Days", xaxis_title = "Date", yaxis_title = "Total Number of Customers")
-    st.show(fig)
+    st.write(fig)
     
 #second page
 if selected == "Feature Selection & SMOTE":
