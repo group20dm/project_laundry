@@ -55,7 +55,7 @@ if selected == "Data Analysis":
     st_folium(map_heatmap)
     
   with col2:
-    st.header("2nd col")
+    st.header("Total Number of Customers in each Days")
     days_count = data.groupby("date").size().reset_index()
 
     days_count.columns = ["date", "total_cust"]
@@ -65,6 +65,7 @@ if selected == "Data Analysis":
     st.write(total_cust_fig)
   
   with col3:
+		st.header("Percentage of Sales in Each Month and Year")
     sales = data.copy()
     sales["month_year"] = sales.date.dt.strftime('%Y-%m')
     sales = sales.groupby("month_year").totalspent_rm.sum().reset_index()
