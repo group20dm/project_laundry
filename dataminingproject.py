@@ -83,6 +83,7 @@ if selected == "Data Analysis":
                                     highlight_function=lambda x: {'weight':4,'fillColor':'grey'},
 
                                 ).add_to(m)
+    st.folium(m)
     
   with col2:
     st.header("Total Number of Customers in each Days")
