@@ -24,8 +24,15 @@ if selected == "Data Analysis":
   st.title("Data Analysis")
   
   st.header("Dataset")
-  df = pd.read_csv('dataset.csv')
-  st.dataframe(df)
+  data = pd.read_csv('dataset.csv')
+  st.dataframe(data)
+  data.columns = data.columns.str.lower()
+  categoricals = data.select_dtypes(include = object)
+
+  for col in categoricals:
+      data[col] = data[col].str.strip()
+
+  data["date"] = pd.to_datetime(data["date"], infer_datetime_format = True)
   
   #columns
   col1, col2, col3, col4 = st.columns(4)
