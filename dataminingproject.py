@@ -169,8 +169,8 @@ if selected == "Data Analysis":
     fig.tight_layout()
 
     return fig
-  outliers = display_outliers(data, "Box plot for each Numerical Features Before Missing Values Handling")
-  st.write(outliers)
+  outliers1 = display_outliers(data, "Box plot for each Numerical Features Before Missing Values Handling")
+  st.write(outliers1)
   
   
   #Missing Values Handling
@@ -204,9 +204,13 @@ if selected == "Data Analysis":
   display_missing_counts(data_copy, "Number of Missing Values in each Features \nAfter Missing Values Handling", axes[1])
 
   compare_missing_outliers.tight_layout()
-  display_outliers(data, "Box plot for each Numerical Features Before Missing Values Handling")
-  display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
   st.write(compare_missing_outliers)
+  outliers2 = display_outliers(data, "Box plot for each Numerical Features Before Missing Values Handling")
+  st.write(outliers2)
+  outliers3 = display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
+  st.write(outliers3)
+  
+  
 #second page
 if selected == "Feature Selection & SMOTE":
   st.title("Feature Selection & SMOTE")
