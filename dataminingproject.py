@@ -46,14 +46,14 @@ with st.sidebar:
     icons = ["bar-chart-line","diagram-3","graph-up"],
   )
   
-  
+data = pd.read_csv('analytical_dataset.csv')
+st.dataframe(data)
 #first page
 if selected == "Data Analysis":
   st.title("Data Analysis")
   #read csv
   st.header("Dataset")
-  data = pd.read_csv('analytical_dataset.csv')
-  st.dataframe(data)
+  
   data.columns = data.columns.str.lower()
   categoricals = data.select_dtypes(include = object)
 
