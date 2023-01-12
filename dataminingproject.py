@@ -247,7 +247,7 @@ if selected == "Data Analysis":
 
   if export_as_pdf:
       pdf = FPDF()
-     
+      st.plotly_chart(col)
       html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
       st.markdown(html, unsafe_allow_html=True)
   
