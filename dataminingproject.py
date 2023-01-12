@@ -242,16 +242,6 @@ if selected == "Data Analysis":
     b64 = base64.b64encode(val)  # val looks like b'...'
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
 
-  df = load_iris(as_frame=True)["data"]
-
-
-  figs = []
-
-  for col in df.columns:
-      fig, ax = plt.subplots()
-      ax.plot(df[col])
-      st.pyplot(fig)
-      figs.append(fig)
 
   export_as_pdf = st.button("Export Report")
 
