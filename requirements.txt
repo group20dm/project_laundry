@@ -11,5 +11,4 @@ sklearn
 boruta
 imblearn
 xgboost
-base64
 numpy
