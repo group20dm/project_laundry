@@ -244,18 +244,11 @@ if selected == "Data Analysis":
     b64 = base64.b64encode(val)  # val looks like b'...'
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
   
-  figs = []
-
-  for col in st.columns:
-      fig, ax = plt.subplots()
-      ax.plot(data[col])
-      st.pyplot(fig)
-      figs.append(fig)
   export_as_pdf = st.button("Export Report")
 
   if export_as_pdf:
       pdf = FPDF()
-      for fig in figs:
+      for fig in st.columns:
           pdf.add_page()
           with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
                   fig.savefig(tmpfile.name)
