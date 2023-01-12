@@ -4,20 +4,27 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import json
 import folium
+import base64
+import numpy as np
 import xgboost as xgb
 
 import geopandas as gpd
 import plotly.express as px
 import plotly.graph_objects as go
 
-from shapely.geometry import shape
 from plotly.subplots import make_subplots
+from shapely.geometry import shape
+
 from streamlit_folium import st_folium,folium_static
 from folium.plugins import HeatMap, FastMarkerCluster
 from streamlit_option_menu import option_menu
 
 from boruta import BorutaPy
 
+from fpdf import FPDF
+from tempfile import NamedTemporaryFile
+
+from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import RandomForestRegressor
 
@@ -231,6 +238,32 @@ if selected == "Data Analysis":
   outliers3 = display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
   st.write(outliers3)
   
+  def create_download_link(val, filename):
+    b64 = base64.b64encode(val)  # val looks like b'...'
+    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
+
+    df = load_iris(as_frame=True)["data"]
+
+
+    figs = []
+
+    for col in df.columns:
+        fig, ax = plt.subplots()
+        ax.plot(df[col])
+        st.pyplot(fig)
+        figs.append(fig)
+
+    export_as_pdf = st.button("Export Report")
+
+    if export_as_pdf:
+        pdf = FPDF()
+        for fig in figs:
+            pdf.add_page()
+            with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+                    fig.savefig(tmpfile.name)
+                    pdf.image(tmpfile.name, 10, 10, 200, 100)
+        html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
+        st.markdown(html, unsafe_allow_html=True)
   
 #second page
 if selected == "Classification":
