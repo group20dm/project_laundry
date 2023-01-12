@@ -197,6 +197,7 @@ if selected == "Data Analysis":
     fig.tight_layout()
 
     return fig
+  
   outliers1 = display_outliers(data, "Box plot for each Numerical Features Before Missing Values Handling")
   st.write(outliers1)
   
@@ -210,6 +211,7 @@ if selected == "Data Analysis":
     ax.set_title(title)
 
     return ax
+  
   display_missing, ax = plt.subplots(figsize=(15, 2))
   display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
   st.write(display_missing)
@@ -241,8 +243,14 @@ if selected == "Data Analysis":
   def create_download_link(val, filename):
     b64 = base64.b64encode(val)  # val looks like b'...'
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
+  
+  figs = []
 
-
+  for col in data.columns:
+      fig, ax = plt.subplots()
+      ax.plot(data[col])
+      st.pyplot(fig)
+      figs.append(fig)
   export_as_pdf = st.button("Export Report")
 
   if export_as_pdf:
