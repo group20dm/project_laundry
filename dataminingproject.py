@@ -243,17 +243,11 @@ if selected == "Data Analysis":
     b64 = base64.b64encode(val)  # val looks like b'...'
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
   
-  for col in st.columns:
-    figs.append(fig)
   export_as_pdf = st.button("Export Report")
 
   if export_as_pdf:
       pdf = FPDF()
-      for fig in figs:
-          pdf.add_page()
-          with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
-                  fig.savefig(tmpfile.name)
-                  pdf.image(tmpfile.name, 10, 10, 200, 100)
+     
       html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
       st.markdown(html, unsafe_allow_html=True)
   
