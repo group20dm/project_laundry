@@ -246,7 +246,7 @@ if selected == "Data Analysis":
   
   figs = []
 
-  for col in data.columns:
+  for col in st.columns:
       fig, ax = plt.subplots()
       ax.plot(data[col])
       st.pyplot(fig)
