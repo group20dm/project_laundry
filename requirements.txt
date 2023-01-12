@@ -12,3 +12,4 @@ boruta
 imblearn
 xgboost
 numpy
+fpdf
