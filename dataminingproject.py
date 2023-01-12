@@ -24,7 +24,6 @@ from boruta import BorutaPy
 from fpdf import FPDF
 from tempfile import NamedTemporaryFile
 
-from sklearn.datasets import load_iris
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.ensemble import RandomForestRegressor
 
@@ -244,11 +243,13 @@ if selected == "Data Analysis":
     b64 = base64.b64encode(val)  # val looks like b'...'
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
   
+  for col in st.columns:
+    figs.append(fig)
   export_as_pdf = st.button("Export Report")
 
   if export_as_pdf:
       pdf = FPDF()
-      for fig in st.columns:
+      for fig in figs:
           pdf.add_page()
           with NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
                   fig.savefig(tmpfile.name)
