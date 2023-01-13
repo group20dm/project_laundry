@@ -49,9 +49,7 @@ from fpdf import FPDF
 from tempfile import NamedTemporaryFile
 
 import ast
-
-from PIL import Image 
-
+# from PIL import Image 
 from yellowbrick.cluster import silhouette_visualizer
 
 from ml_tools import *
