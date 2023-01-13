@@ -20,4 +20,4 @@ keras
 mlxtend
 tensorflow
 tqdm
-
+PIL
