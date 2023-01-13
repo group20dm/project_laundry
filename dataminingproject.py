@@ -239,17 +239,20 @@ if selected == "Data Analysis":
   outliers3 = display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
   st.write(outliers3)
   
+  PLOT_DIR = 'plots'
+  
   def create_download_link(val, filename):
     b64 = base64.b64encode(val)  # val looks like b'...'
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
   
   export_as_pdf = st.button("Export Report")
-  plots_per_page = construct()
-  plots_per_page
+  
   if export_as_pdf:
       pdf = FPDF()
-      for elem in plots_per_page:
-        pdf.print_page(elem)
+      pdf.add_page()
+      with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
+        plt.savefig(tmpfile.name, format="png")
+        pdf.image(tmpfile.name)
       html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
       st.markdown(html, unsafe_allow_html=True)
   
