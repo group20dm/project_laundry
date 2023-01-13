@@ -264,23 +264,6 @@ if selected == "Data Analysis":
   outliers3 = display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
   st.write(outliers3)
   
-  def create_download_link(val, filename):
-    b64 = base64.b64encode(val)  # val looks like b'...'
-    return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
-  
-  export_as_pdf = st.button("Export Report")
-  
-  if export_as_pdf:
-      pdf = FPDF()
-      pdf.add_page()
-      html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
-      st.markdown(html, unsafe_allow_html=True)
-  
-#second page
-if selected == "Classification":
-  st.title("Classification")
-  st.header("Feature Selection")
-  
   data = data_copy.copy()
   data["year"] = data.date.dt.year
   data["month"] = data.date.dt.month
@@ -293,6 +276,23 @@ if selected == "Classification":
 
   data = data[data.nunique(dropna = False)[data.nunique(dropna = False) > 1].index]
   data.drop(columns = ["address", "city_geometry"], inplace = True)
+#   def create_download_link(val, filename):
+#     b64 = base64.b64encode(val)  # val looks like b'...'
+#     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
+  
+#   export_as_pdf = st.button("Export Report")
+  
+#   if export_as_pdf:
+#       pdf = FPDF()
+#       pdf.add_page()
+#       html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
+#       st.markdown(html, unsafe_allow_html=True)
+  
+#second page
+if selected == "Classification":
+  st.title("Classification")
+  st.header("Feature Selection")
+  
   
   def save_model(model, file):
     pickle.dump(model, open(f"pickle_files/{file}.pkl", "wb"))
