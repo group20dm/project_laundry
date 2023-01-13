@@ -181,7 +181,7 @@ if selected == "Data Analysis":
     
     #Relationships between Variables
     st.header("Relationships between Variables")
-    sns_heatmap, ax = plt.subplots(figsize=(8, 8))
+    sns_heatmap, ax = plt.subplots(figsize=(10,10))
     sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
     st.write(sns_heatmap) 
   
@@ -202,7 +202,7 @@ if selected == "Data Analysis":
     
     #Do we need to perform data imbalance treatment?
     st.header("Do we need to perform data imbalance treatment?")
-    sns_countplot, ax = plt.subplots(figsize=(8, 8))
+    sns_countplot, ax = plt.subplots(figsize=(8,8))
     sns.countplot(x = "wash_item", data = data,ax=ax)
     st.write(sns_countplot)
   
@@ -213,7 +213,7 @@ if selected == "Data Analysis":
     outliers = data.select_dtypes([float, int])
     n_col = len(outliers.columns)
 
-    fig, axes = plt.subplots(n_col // 2,2, figsize = (15, 15))
+    fig, axes = plt.subplots(n_col // 2,2, figsize = (13,13))
     for ax, col in zip(axes.flatten(), outliers.columns):
         sns.boxplot(x = col, data = outliers, ax = ax)
 
@@ -236,7 +236,7 @@ if selected == "Data Analysis":
 
     return ax
   
-  display_missing, ax = plt.subplots(figsize=(15, 2))
+  display_missing, ax = plt.subplots(figsize=(15,2))
   display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
   st.write(display_missing)
   #
