@@ -181,7 +181,7 @@ if selected == "Data Analysis":
     
     #Relationships between Variables
     st.header("Relationships between Variables")
-    sns_heatmap, ax = plt.subplots(figsize=(12,12))
+    sns_heatmap, ax = plt.subplots(figsize=(15,15))
     sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
     st.write(sns_heatmap) 
   
