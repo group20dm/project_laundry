@@ -301,7 +301,7 @@ if selected == "Classification":
     st.image(boruta, caption='Top 10 boruta')
     
   with col2:
-    st.header("RFE")
+    st.header("RFE") 
     RFE = Image.open('top10_RFE.jpg')
     st.image(RFE, caption='Top 10 RFE')
      
