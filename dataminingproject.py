@@ -252,7 +252,7 @@ if selected == "Data Analysis":
   for col in other_missing_values:
       data_copy[col] = data_copy[col].fillna(data[col].median())
   #
-  compare_missing_outliers, axes = plt.subplots(1,2, figsize = (15,8))
+  compare_missing_outliers, axes = plt.subplots(1, 2, figsize = (15,8))
   display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", axes[0])
   display_missing_counts(data_copy, "Number of Missing Values in each Features \nAfter Missing Values Handling", axes[1])
 
@@ -291,7 +291,6 @@ if selected == "Data Analysis":
 if selected == "Classification":
   st.title("Classification")
   st.header("Feature Selection")
-  
   
   def save_model(model, file):
     pickle.dump(model, open(f"pickle_files/{file}.pkl", "wb"))
