@@ -306,7 +306,7 @@ if selected == "Classification":
     st.header("RFE")
     top10_RFE = Image.open('top10_RFE.jpg')
     st.image(top10_RFE, caption='Top 10 RFE')
-    
+     
 #third page
 if selected == "Model":
   st.title("Model")
