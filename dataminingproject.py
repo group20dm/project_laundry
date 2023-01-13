@@ -64,7 +64,6 @@ from keras import backend as K
 
 from mlxtend.frequent_patterns import apriori, association_rules
 from PIL import Image
-
 import pickle
 
 st.set_page_config(layout="wide")
@@ -181,7 +180,7 @@ if selected == "Data Analysis":
     
     #Relationships between Variables
     st.header("Relationships between Variables")
-    sns_heatmap, ax = plt.subplots(figsize=(15,15))
+    sns_heatmap, ax = plt.subplots(figsize=(13,13))
     sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
     st.write(sns_heatmap) 
   
@@ -215,7 +214,7 @@ if selected == "Data Analysis":
 
     fig, axes = plt.subplots(n_col // 2,2, figsize = (13,13))
     for ax, col in zip(axes.flatten(), outliers.columns):
-        sns.boxplot(x = col, data = outliers, ax = ax)
+      sns.boxplot(x=col, data = outliers, ax= ax)
 
     fig.suptitle(title)
     fig.tight_layout()
