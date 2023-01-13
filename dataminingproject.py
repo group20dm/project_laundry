@@ -49,7 +49,7 @@ from fpdf import FPDF
 from tempfile import NamedTemporaryFile
 
 import ast
-# from PIL import Image 
+from PIL import Image 
 from yellowbrick.cluster import silhouette_visualizer
 
 from ml_tools import *
@@ -294,16 +294,16 @@ if selected == "Classification":
   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
   
   #columns
-  col1, col2 = st.columns(2)
-  with col1:
-    st.header("Boruta")
-    top10_boruta = Image.open('top10_boruta.jpg')
-    st.image(top10_boruta, caption='Top 10 boruta')
+#   col1, col2 = st.columns(2)
+#   with col1:
+#     st.header("Boruta")
+#     top10_boruta = Image.open('top10_boruta.jpg')
+#     st.image(top10_boruta, caption='Top 10 boruta')
     
-  with col2:
-    st.header("RFE")
-    top10_RFE = Image.open('top10_RFE.jpg')
-    st.image(top10_RFE, caption='Top 10 RFE')
+#   with col2:
+#     st.header("RFE")
+#     top10_RFE = Image.open('top10_RFE.jpg')
+#     st.image(top10_RFE, caption='Top 10 RFE')
      
 #third page
 if selected == "Model":
