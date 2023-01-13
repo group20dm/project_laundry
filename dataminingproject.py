@@ -249,7 +249,7 @@ if selected == "Data Analysis":
   if export_as_pdf:
       pdf = FPDF()
       for elem in plots_per_page:
-      pdf.print_page(elem)
+        pdf.print_page(elem)
       html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
       st.markdown(html, unsafe_allow_html=True)
   
