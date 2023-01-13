@@ -181,7 +181,7 @@ if selected == "Data Analysis":
     
     #Relationships between Variables
     st.header("Relationships between Variables")
-    sns_heatmap, ax = plt.subplots(figsize=(8, 8))
+    sns_heatmap, ax = plt.subplots(figsize=(10, 10))
     sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
     st.write(sns_heatmap) 
   
@@ -203,7 +203,7 @@ if selected == "Data Analysis":
     #Do we need to perform data imbalance treatment?
     st.header("Do we need to perform data imbalance treatment?")
     sns_countplot, ax = plt.subplots(figsize=(8, 8))
-    sns.countplot(x = "washer_no", data = data,ax=ax)
+    sns.countplot(x = "wash_item", data = data,ax=ax)
     st.write(sns_countplot)
   
   
@@ -213,9 +213,9 @@ if selected == "Data Analysis":
     outliers = data.select_dtypes([float, int])
     n_col = len(outliers.columns)
 
-    fig, axes = plt.subplots(1, n_col, figsize = (15, 5))
-    for idx, col in enumerate(outliers.columns):
-        axes[idx] = sns.boxplot(y = col, data = outliers, ax = axes[idx])
+    fig, axes = plt.subplots(n_col // 2,2, figsize = (15, 15))
+    for ax, col in zip(axes.flatten(), outliers.columns):
+        sns.boxplot(x = col, data = outliers, ax = ax)
 
     fig.suptitle(title)
     fig.tight_layout()
@@ -253,7 +253,7 @@ if selected == "Data Analysis":
   for col in other_missing_values:
       data_copy[col] = data_copy[col].fillna(data[col].median())
   #
-  compare_missing_outliers, axes = plt.subplots(1,2, figsize = (15, 5))
+  compare_missing_outliers, axes = plt.subplots(1,2, figsize = (15, 8))
   display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", axes[0])
   display_missing_counts(data_copy, "Number of Missing Values in each Features \nAfter Missing Values Handling", axes[1])
 
@@ -264,7 +264,6 @@ if selected == "Data Analysis":
   outliers3 = display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
   st.write(outliers3)
   
-  PLOT_DIR = 'plots'
   
   def create_download_link(val, filename):
     b64 = base64.b64encode(val)  # val looks like b'...'
