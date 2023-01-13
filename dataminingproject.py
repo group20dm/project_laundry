@@ -202,7 +202,7 @@ if selected == "Data Analysis":
     
     #Do we need to perform data imbalance treatment?
     st.header("Do we need to perform data imbalance treatment?")
-    sns_countplot, ax = plt.subplots(figsize=(8, 8))
+    sns_countplot, ax = plt.subplots(figsize=(10, 10))
     sns.countplot(x = "wash_item", data = data,ax=ax)
     st.write(sns_countplot)
   
@@ -282,28 +282,28 @@ if selected == "Classification":
   st.title("Classification")
   st.header("Feature Selection")
   
-  X = data.drop(columns = "washer_no")
-  y = data.washer_no.copy()
+#   X = data.drop(columns = "washer_no")
+#   y = data.washer_no.copy()
 
-  y[y != 3] = 0
-  y[y == 3] = 1
-  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
+#   y[y != 3] = 0
+#   y[y == 3] = 1
+#   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
   
-  #columns
-  col1, col2 = st.columns(2)
-  with col1:
-    st.header("Baseline Model (without Feature Selection & SMOTE)")
-    clf = xgb.XGBClassifier(random_state = 42, n_jobs = -1)
+#   #columns
+#   col1, col2 = st.columns(2)
+#   with col1:
+#     st.header("Baseline Model (without Feature Selection & SMOTE)")
+#     clf = xgb.XGBClassifier(random_state = 42, n_jobs = -1)
 
-    models = {"XGBoost": xgb.XGBClassifier(random_state = 42, n_jobs = -1)}
-    # model = clf
-    # model.fit(X_train, y_train)
-    # model.predict_proba(X_test)
+#     models = {"XGBoost": xgb.XGBClassifier(random_state = 42, n_jobs = -1)}
+#     # model = clf
+#     # model.fit(X_train, y_train)
+#     # model.predict_proba(X_test)
 
-    models = Model(models)
-    metric = Metric(X_train, X_test, y_train, y_test, "binary")
-    metric_score = metric.score(models = models)
-    st.write(metric_score)
+#     models = Model(models)
+#     metric = Metric(X_train, X_test, y_train, y_test, "binary")
+#     metric_score = metric.score(models = models)
+#     st.write(metric_score)
     
   with col2:
     st.header("RFE")
