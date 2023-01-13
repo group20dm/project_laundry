@@ -19,3 +19,4 @@ yellowbrick
 keras
 mlxtend
 tensorflow
+tqdm
