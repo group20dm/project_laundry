@@ -244,10 +244,12 @@ if selected == "Data Analysis":
     return f'<a href="data:application/octet-stream;base64,{b64.decode()}" download="{filename}.pdf">Download file</a>'
   
   export_as_pdf = st.button("Export Report")
-
+  plots_per_page = construct()
+  plots_per_page
   if export_as_pdf:
       pdf = FPDF()
-      st.plotly_chart(data)
+      for elem in plots_per_page:
+      pdf.print_page(elem)
       html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
       st.markdown(html, unsafe_allow_html=True)
   
