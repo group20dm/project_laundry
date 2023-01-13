@@ -50,6 +50,8 @@ from tempfile import NamedTemporaryFile
 
 import ast
 
+from PIL import Image
+
 from yellowbrick.cluster import silhouette_visualizer
 
 from ml_tools import *
@@ -281,33 +283,29 @@ if selected == "Classification":
   st.title("Classification")
   st.header("Feature Selection")
   
-#   X = data.drop(columns = "washer_no")
-#   y = data.washer_no.copy()
+  selected_washer = data[data.wash_item != 2]
+  X = selected_washer.drop(columns = "wash_item")
+  scaler = StandardScaler()
+  X_scaled = scaler.fit_transform(X)
 
-#   y[y != 3] = 0
-#   y[y == 3] = 1
-#   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
+  save_model(scaler, "class_scaler")
+
+  X = pd.DataFrame(X_scaled, columns = X.columns)
+  y = selected_washer.wash_item.copy()
+
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
   
-#   #columns
-#   col1, col2 = st.columns(2)
-#   with col1:
-#     st.header("Baseline Model (without Feature Selection & SMOTE)")
-#     clf = xgb.XGBClassifier(random_state = 42, n_jobs = -1)
-
-#     models = {"XGBoost": xgb.XGBClassifier(random_state = 42, n_jobs = -1)}
-#     # model = clf
-#     # model.fit(X_train, y_train)
-#     # model.predict_proba(X_test)
-
-#     models = Model(models)
-#     metric = Metric(X_train, X_test, y_train, y_test, "binary")
-#     metric_score = metric.score(models = models)
-#     st.write(metric_score)
+  #columns
+  col1, col2 = st.columns(2)
+  with col1:
+    st.header("Boruta")
+    top10_boruta = Image.open('top10_boruta.jpg')
+    st.image(top10_boruta, caption='Top 10 boruta')
     
   with col2:
     st.header("RFE")
-    conf_mat = metric.conf_mat(figsize = (8,3))
-    st.write(conf_mat)
+    top10_RFE = Image.open('top10_RFE.jpg')
+    st.image(top10_RFE, caption='Top 10 RFE')
     
 #third page
 if selected == "Model":
