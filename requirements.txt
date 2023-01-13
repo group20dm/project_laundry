@@ -16,3 +16,5 @@ fpdf
 geopy
 selenium
 yellowbrick
+keras
+mlxtend
