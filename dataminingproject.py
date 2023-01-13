@@ -281,6 +281,29 @@ if selected == "Classification":
   st.title("Classification")
   st.header("Feature Selection")
   
+  data = data_copy.copy()
+  data["year"] = data.date.dt.year
+  data["month"] = data.date.dt.month
+  data["day"] = data.date.dt.day
+
+  data.time = data.time.str.replace(";", ":")
+
+  data[['hour', 'minute', "second"]] = data.time.str.split(":", expand = True).astype(int)
+  data = data.drop(columns = ["date", "time"])
+
+  data = data[data.nunique(dropna = False)[data.nunique(dropna = False) > 1].index]
+  data.drop(columns = ["address", "city_geometry"], inplace = True)
+  
+  def save_model(model, file):
+    pickle.dump(model, open(f"pickle_files/{file}.pkl", "wb"))
+    
+  categoricals = list(data.select_dtypes(object).columns)
+
+  for categorical in categoricals:
+      le = LabelEncoder()
+      data[categorical] = le.fit_transform(data[categorical])
+      save_model(le, categorical)
+  
   selected_washer = data[data.wash_item != 2]
   X = selected_washer.drop(columns = "wash_item")
   scaler = StandardScaler()
