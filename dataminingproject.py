@@ -48,8 +48,8 @@ st.set_page_config(layout="wide")
 with st.sidebar:
   selected = option_menu (
     menu_title = "Main menu",
-    options = ["Data Analysis", "Classification", "Regression"],
-    icons = ["bar-chart-line","diagram-3","graph-up"],
+    options = ["Data Analysis", "Classification", "Regression", "Classification prediction","Regression prediction"],
+    icons = ["bar-chart-line","diagram-3","graph-up","diagram-3","graph-up"],
   )
   
 data = pd.read_csv('analytical_dataset.csv')
@@ -250,9 +250,6 @@ if selected == "Data Analysis":
   if export_as_pdf:
       pdf = FPDF()
       pdf.add_page()
-      with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as tmpfile:
-        plt.savefig(tmpfile.name, format="png")
-        pdf.image(tmpfile.name)
       html = create_download_link(pdf.output(dest="S").encode("latin-1"), "testfile")
       st.markdown(html, unsafe_allow_html=True)
   
