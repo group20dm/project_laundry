@@ -20,4 +20,3 @@ keras
 mlxtend
 tensorflow
 tqdm
-
