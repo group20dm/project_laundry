@@ -6,3 +6,11 @@ geopandas
 plotly
 seaborn
 matplotlib
+shapely
+sklearn
+boruta
+imblearn
+xgboost
+numpy
+fpdf
+
