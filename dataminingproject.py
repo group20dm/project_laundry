@@ -49,7 +49,6 @@ from fpdf import FPDF
 from tempfile import NamedTemporaryFile
 
 import ast
-from PIL import Image 
 from yellowbrick.cluster import silhouette_visualizer
 
 from ml_tools import *
@@ -64,6 +63,7 @@ from keras.utils import plot_model
 from keras import backend as K
 
 from mlxtend.frequent_patterns import apriori, association_rules
+from PIL import Image
 
 import pickle
 
@@ -293,7 +293,7 @@ if selected == "Classification":
 
   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
   
-  columns
+  #columns
   col1, col2 = st.columns(2)
   with col1:
     st.header("Boruta")
@@ -304,7 +304,7 @@ if selected == "Classification":
     st.header("RFE") 
     RFE = Image.open('top10_RFE.jpg')
     st.image(RFE, caption='Top 10 RFE')
-     
+    
 #third page
 if selected == "Model":
   st.title("Model")
