@@ -202,7 +202,7 @@ if selected == "Data Analysis":
     
     #Do we need to perform data imbalance treatment?
     st.header("Do we need to perform data imbalance treatment?")
-    sns_countplot, ax = plt.subplots(figsize=(10, 10))
+    sns_countplot, ax = plt.subplots(figsize=(8, 8))
     sns.countplot(x = "wash_item", data = data,ax=ax)
     st.write(sns_countplot)
   
@@ -253,7 +253,7 @@ if selected == "Data Analysis":
   for col in other_missing_values:
       data_copy[col] = data_copy[col].fillna(data[col].median())
   #
-  compare_missing_outliers, axes = plt.subplots(1,2, figsize = (15, 8))
+  compare_missing_outliers, axes = plt.subplots(1,2, figsize = (15,8))
   display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", axes[0])
   display_missing_counts(data_copy, "Number of Missing Values in each Features \nAfter Missing Values Handling", axes[1])
 
@@ -263,7 +263,6 @@ if selected == "Data Analysis":
   st.write(outliers2)
   outliers3 = display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
   st.write(outliers3)
-  
   
   def create_download_link(val, filename):
     b64 = base64.b64encode(val)  # val looks like b'...'
