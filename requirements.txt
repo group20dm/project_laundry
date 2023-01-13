@@ -14,3 +14,4 @@ xgboost
 numpy
 fpdf
 geopy
+selenium
