@@ -2,17 +2,40 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+from scipy.stats import chi2_contingency
+
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.metrics import silhouette_score
+from sklearn.cluster import KMeans
+from sklearn.ensemble import StackingClassifier, RandomForestClassifier, RandomForestRegressor, StackingRegressor
+from sklearn.svm import SVC, SVR
+from sklearn.linear_model import LogisticRegression, LinearRegression, Ridge
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.feature_selection import RFE
+
+from geopy.geocoders import Nominatim
+from geopy.extra.rate_limiter import RateLimiter
+
+import time
+from tqdm import tqdm
+
 import json
 import folium
 import base64
 import numpy as np
 import xgboost as xgb
-
 import geopandas as gpd
-import plotly.express as px
-import plotly.graph_objects as go
 
-from plotly.subplots import make_subplots
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+
 from shapely.geometry import shape
 
 from streamlit_folium import st_folium,folium_static
@@ -20,27 +43,29 @@ from folium.plugins import HeatMap, FastMarkerCluster
 from streamlit_option_menu import option_menu
 
 from boruta import BorutaPy
+from xgboost import XGBClassifier, XGBRegressor
 
 from fpdf import FPDF
 from tempfile import NamedTemporaryFile
 
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.ensemble import RandomForestRegressor
+import ast
 
-from sklearn.model_selection import train_test_split
-from sklearn.feature_selection import RFE
-
-from sklearn.multiclass import OneVsRestClassifier
-
-from sklearn.metrics import classification_report
-from sklearn.multioutput import ClassifierChain
-from sklearn.linear_model import LogisticRegression
-
-from sklearn.preprocessing import normalize
+from yellowbrick.cluster import silhouette_visualizer
 
 from ml_tools import *
 
 from imblearn.over_sampling import SMOTE
+
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Conv1D, Flatten, MaxPooling1D, BatchNormalization
+from keras.callbacks import EarlyStopping
+from keras.metrics import Precision, Recall, AUC
+from keras.utils import plot_model
+from keras import backend as K
+
+from mlxtend.frequent_patterns import apriori, association_rules
+
+import pickle
 
 st.set_page_config(layout="wide")
 
