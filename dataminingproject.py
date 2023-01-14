@@ -24,7 +24,7 @@ from geopy.extra.rate_limiter import RateLimiter
 
 import time
 from tqdm import tqdm
-
+ 
 import json
 import folium
 import base64
