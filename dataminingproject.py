@@ -392,8 +392,6 @@ if selected == "Classification prediction":
   scaler = StandardScaler()
   X_scaled = scaler.fit_transform(X)
 
-  save_model(scaler, "class_scaler")
-
   X = pd.DataFrame(X_scaled, columns = X.columns)
   y = selected_washer.wash_item.copy()
 
