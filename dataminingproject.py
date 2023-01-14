@@ -399,7 +399,7 @@ if selected == "Classification prediction":
 
   model = pickle.load(open("pickle_files/best_classifier.pkl", "rb"))
 #   st.write(int(model.predict(scaled)[0] > .5))
-  st.write(int(model.predict(scaled))
+  st.write(int(model.predict(scaled)))
 
 if selected == "Regression prediction":
   st.title("Regression prediction")
