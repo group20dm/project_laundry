@@ -180,7 +180,7 @@ if selected == "Data Analysis":
     
     #Relationships between Variables
     st.header("Relationships between Variables")
-    sns_heatmap, ax = plt.subplots(figsize=(13,13))
+    sns_heatmap, ax = plt.subplots(1,1, figsize=(13,13))
     sns.heatmap(data.corr(), annot = True, cmap = "YlGnBu", ax=ax)
     st.write(sns_heatmap) 
   
@@ -235,7 +235,7 @@ if selected == "Data Analysis":
 
     return ax
   
-  display_missing, ax = plt.subplots(figsize=(15,2))
+  display_missing, ax = plt.subplots(1,1, figsize=(15,2))
   display_missing_counts(data, "Number of Missing Values in each Features \nBefore Missing Values Handling", ax = ax)
   st.write(display_missing)
   #
