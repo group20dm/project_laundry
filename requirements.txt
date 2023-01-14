@@ -10,7 +10,7 @@ shapely
 scikit-learn
 boruta
 imblearn
-xgboost
+xgboost==1.2.0
 numpy
 fpdf
 geopy
