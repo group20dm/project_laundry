@@ -263,6 +263,16 @@ if selected == "Data Analysis":
   outliers3 = display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
   st.write(outliers3)
   
+  if st.button("Download PDF"):
+        html(
+            f"""
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+                <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+                <script>{open("download.js").read()}
+
+                </script>
+                """,height = 0,width = 0)
+  
   data = data_copy.copy()
   data["year"] = data.date.dt.year
   data["month"] = data.date.dt.month
