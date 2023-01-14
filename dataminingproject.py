@@ -485,33 +485,11 @@ if selected == "Regression prediction":
   
   scaler = pickle.load(open("pickle_files/reg_scaler.pkl", "rb"))
   scaled = pd.DataFrame(scaler.transform(user_input), columns = user_input.columns)
+  scaled = scaled[['city_district', 'shop', 'office', 'building', 'man_made',
+         'house_number', 'amenity', 'hamlet', 'suburb', 'neighbourhood']]
+  st.write(scaled)
 
-  selected_washer = data[data.wash_item != 2]
-  X = selected_washer.drop(columns = "wash_item")
-  scaler = StandardScaler()
-  X_scaled = scaler.fit_transform(X)
-
-  X = pd.DataFrame(X_scaled, columns = X.columns)
-  y = selected_washer.wash_item.copy()
-
-  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
-  early_stopping = EarlyStopping(patience=3)
-  sm = SMOTE(random_state=42)
-  X_train_res, y_train_res = sm.fit_resample(X_train,y_train)
-  mlp_washer_improved = Sequential([
-      Dense(400, activation = "relu", input_shape = (X_train_res.shape[1],)),
-      Dense(350, activation = "relu"),
-      Dense(200, activation = "relu"),
-      Dense(150, activation = "relu"),
-      Dense(100, activation = "relu"),
-      Dense(1, activation = "sigmoid")
-  ])
-
-  mlp_washer_improved.compile(optimizer='adam', loss="binary_crossentropy", metrics = ['acc', Precision(), Recall(), AUC()])
+  model = pickle.load(open("pickle_files/best_reg.pkl", "rb"))
+  predict = model.predict(scaled)[0]
   
-  
-  mlp_washer_history = mlp_washer_improved.fit(X_train_res, y_train_res, validation_split=0.2, epochs=50, callbacks=[early_stopping])
-  predict = int(mlp_washer_improved.predict(scaled)[0] > .5)
-  predict = "clothes" if predict == 1 else "blankets"
-   
-  st.write(f"Your predicted value is : {predict}.")
+  st.write(f"Your predicted value is : RM {predict}.")
