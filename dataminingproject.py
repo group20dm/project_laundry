@@ -394,3 +394,46 @@ if selected == "Classification prediction":
 
 if selected == "Regression prediction":
   st.title("Regression prediction")
+  
+  data = pd.read_csv("encoded_data.csv")
+
+  cols = list(data.columns)
+  cols.remove("wash_item")
+
+  user_input = {}
+  pickle_files = os.listdir("pickle_files")
+
+  def find_encoder(col):
+      for file in pickle_files:
+          if col in file: 
+              return True
+
+      return False
+
+  for col in cols:
+      uniq = data[col].unique()
+
+      found_encoder = False
+      if find_encoder(col): 
+          encoder = pickle.load(open(f"pickle_files/{col}.pkl", "rb"))
+          uniq = encoder.inverse_transform(uniq)
+          found_encoder = True
+
+      selected = st.selectbox(col, uniq)
+
+      if found_encoder: 
+          user_input[col] = [encoder.transform([selected])]
+      else: 
+          user_input[col] = [selected]
+
+  user_input = pd.DataFrame(user_input)
+  st.write(user_input)
+
+  scaler = pickle.load(open("pickle_files/reg_scaler.pkl", "rb"))
+  scaled = pd.DataFrame(scaler.transform(user_input), columns = user_input.columns)
+  scaled = scaled[['city_district', 'shop', 'office', 'building', 'man_made',
+         'house_number', 'amenity', 'hamlet', 'suburb', 'neighbourhood']]
+  st.write(scaled)
+
+  model = pickle.load(open("pickle_files/best_reg.pkl", "rb"))
+  st.write(model.predict(scaled)[0])
