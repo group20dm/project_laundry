@@ -6,10 +6,8 @@ import matplotlib.pyplot as plt
 import os
 import plotly.express as px
 import plotly.graph_objects as go
+
 from plotly.subplots import make_subplots
-
-from scipy.stats import chi2_contingency
-
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.metrics import silhouette_score
 from sklearn.cluster import KMeans
@@ -20,6 +18,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.feature_selection import RFE
 
+from scipy.stats import chi2_contingency
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 
@@ -45,9 +44,6 @@ from streamlit_option_menu import option_menu
 from boruta import BorutaPy
 from xgboost import XGBClassifier, XGBRegressor
 
-from fpdf import FPDF
-from tempfile import NamedTemporaryFile
-
 import ast
 from yellowbrick.cluster import silhouette_visualizer
 
@@ -55,12 +51,13 @@ from ml_tools import *
 
 from imblearn.over_sampling import SMOTE
 
-# from keras.models import Sequential
-# from keras.layers import Dense, Dropout, Conv1D, Flatten, MaxPooling1D, BatchNormalization
-# from keras.callbacks import EarlyStopping
-# from keras.metrics import Precision, Recall, AUC
-# from keras.utils import plot_model
-# from keras import backend as K
+from keras.models import Sequential
+from keras.layers import Dense, Dropout, Conv1D, Flatten, MaxPooling1D, BatchNormalization
+from keras.callbacks import EarlyStopping
+from keras.metrics import Precision, Recall, AUC
+from keras.utils import plot_model
+from keras import backend as K
+
 
 from mlxtend.frequent_patterns import apriori, association_rules
 from PIL import Image
@@ -72,7 +69,7 @@ st.set_page_config(layout="wide")
 with st.sidebar:
   selected = option_menu (
     menu_title = "Main menu",
-    options = ["Data Analysis", "Classification", "Regression", "Classification prediction","Regression prediction"],
+    options = ["Data Analysis", "Classification", "Regression", "Classification" , "Regression prediction"],
     icons = ["bar-chart-line","diagram-3","graph-up","diagram-3","graph-up"],
   )
   
@@ -298,9 +295,9 @@ if selected == "Classification":
   categoricals = list(data.select_dtypes(object).columns)
 
   for categorical in categoricals:
-      le = LabelEncoder()
-      data[categorical] = le.fit_transform(data[categorical])
-      save_model(le, categorical)
+    le = LabelEncoder()
+    data[categorical] = le.fit_transform(data[categorical])
+    save_model(le, categorical)
   
   selected_washer = data[data.wash_item != 2]
   X = selected_washer.drop(columns = "wash_item")
@@ -422,6 +419,3 @@ if selected == "Classification prediction":
 
 if selected == "Regression prediction":
   st.title("Regression prediction")
-  
-  
-
