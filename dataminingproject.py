@@ -327,8 +327,8 @@ if selected == "Classification":
     model_improve_conf = Image.open('model_improve_conf.jpg')
     st.image(model_improve_conf, caption='Confusion Metrics')
 #third page
-if selected == "Regression prediction":
-  st.title("Regression prediction")
+if selected == "Regression":
+  st.title("Regression")
   st.header("Feature Selection")
   
   col1, col2 = st.columns(2)
