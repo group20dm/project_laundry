@@ -7,7 +7,7 @@ plotly
 seaborn
 matplotlib
 shapely
-sklearn
+scikit-learn
 boruta
 imblearn
 xgboost
