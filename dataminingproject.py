@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib.font_manager
 
 import plotly.express as px
 import plotly.graph_objects as go
@@ -330,6 +331,22 @@ if selected == "Classification":
   SMOTE = Image.open('SMOTE.jpg')
   st.image(SMOTE, caption='SMOTE')
   
+  st.header("Model Construction")
+  st.subheader("Comparison between Classifiers")
+  compare_class = Image.open('compare_class.jpg')
+  st.image(compare_class, caption='Comparison between Classifiers')
+  
+  col1, col2 = st.columns(2)
+  st.header("Model Improvement")
+  with col1:
+    st.subheader("Metrics score")
+    model_improve = Image.open('model_improve.jpg')
+    st.image(model_improve, caption='Metrics score')
+    
+  with col2:
+    st.subheader("Confusion Metrics") 
+    model_improve_conf = Image.open('model_improve_conf.jpg')
+    st.image(model_improve_conf, caption='Confusion Metrics')
 #third page
 if selected == "Model":
   st.title("Model")
