@@ -371,7 +371,7 @@ if selected == "Classification prediction":
           if col in file: 
               return True
 
-      return False
+      return False 
 
   for col in cols:
       uniq = data[col].unique()
