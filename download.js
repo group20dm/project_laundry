@@ -12,7 +12,6 @@ let pdf_height = pdf_width * 1.5 + 20;
 
 let n_pages = Math.ceil(height / pdf_height) - 1;
 download_button.innerText = "Downloading PDF...";
-download_button.style.display = "none";
 
 html2canvas(container, {allowTaint: true}).then(function (canvas) {{
 
@@ -30,5 +29,4 @@ html2canvas(container, {allowTaint: true}).then(function (canvas) {{
     pdf.save('test.pdf');
 
     download_button.innerText = "Download PDF";
-    download_button.style.display = "block";
 }})
