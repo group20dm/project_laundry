@@ -348,12 +348,31 @@ if selected == "Classification":
     model_improve_conf = Image.open('model_improve_conf.jpg')
     st.image(model_improve_conf, caption='Confusion Metrics')
 #third page
-if selected == "Model":
-  st.title("Model")
-#first page data analysis (skip)
-#left side google map
+if selected == "Regression":
+  st.title("Regression")
+  st.header("Feature Selection")
+  X = data.drop(columns = 'totalspent_rm')
+  scaler = StandardScaler()
+  X_scaled = scaler.fit_transform(X)
 
-#second page feature selection & smote
-#left sub header boruta right is rfe
+  save_model(scaler, "reg_scaler")
 
-#third page model
+  X = pd.DataFrame(X_scaled, columns = X.columns)
+  y = data.totalspent_rm
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42)
+  
+  col1, col2 = st.columns(2)
+  with col1:
+    st.subheader("Boruta")
+    reg_boruta = Image.open('reg_boruta.jpg')
+    st.image(reg_boruta, caption='Top 10 boruta')
+    
+  with col2:
+    st.subheader("RFE") 
+    reg_rfe = Image.open('reg_rfe.jpg')
+    st.image(reg_rfe, caption='Top 10 RFE')
+    
+  st.header("Model Improvement")
+  reg_model_improve = Image.open('reg_model_improve.jpg')
+  st.image(reg_model_improve, caption='Metrics score')
+    
