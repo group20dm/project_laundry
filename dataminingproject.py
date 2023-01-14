@@ -336,8 +336,8 @@ if selected == "Classification":
   compare_class = Image.open('compare_class.jpg')
   st.image(compare_class, caption='Comparison between Classifiers')
   
-  col1, col2 = st.columns(2)
   st.header("Model Improvement")
+  col1, col2 = st.columns(2)
   with col1:
     st.subheader("Metrics score")
     model_improve = Image.open('model_improve.jpg')
