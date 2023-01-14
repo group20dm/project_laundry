@@ -388,10 +388,23 @@ if selected == "Classification prediction":
 
   st.write(scaled)
 
-  model = pickle.load(open("pickle_files/best_classifier.pkl", "rb"))
-#   st.write(int(model.predict(scaled)[0] > .5))
-  st.write(int(model.predict(scaled)))
+  early_stopping = EarlyStopping(patience=3)
+  mlp_washer_improved = Sequential([
+      Dense(400, activation = "relu", input_shape = (X_train_res.shape[1],)),
+      Dense(350, activation = "relu"),
+      Dense(200, activation = "relu"),
+      Dense(150, activation = "relu"),
+      Dense(100, activation = "relu"),
+      Dense(1, activation = "sigmoid")
+  ])
 
+  mlp_washer_improved.compile(optimizer='adam', loss="binary_crossentropy", metrics = ['acc', Precision(), Recall(), AUC()])
+  
+  
+  mlp_washer_history = mlp_washer_improved.fit(X_train_res, y_train_res, validation_split=0.2, epochs=50, callbacks=[early_stopping])
+  predict = mlp_washer_improved.predict(scaled)
+  st.write(predict)
+  
 if selected == "Regression prediction":
   st.title("Regression prediction")
   
