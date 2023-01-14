@@ -413,7 +413,7 @@ if selected == "Classification prediction":
   
   mlp_washer_history = mlp_washer_improved.fit(X_train_res, y_train_res, validation_split=0.2, epochs=50, callbacks=[early_stopping])
   predict = mlp_washer_improved.predict(scaled)
-  st.write(int(model.predict(scaled)[0] > .5))
+  st.write(int(mlp_washer_improved.predict(scaled)[0] > .5))
   
 if selected == "Regression prediction":
   st.title("Regression prediction")
