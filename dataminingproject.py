@@ -69,7 +69,7 @@ st.set_page_config(layout="wide")
 with st.sidebar:
   selected = option_menu (
     menu_title = "Main menu",
-    options = ["Data Analysis", "Classification", "Regression", "Classification" , "Regression prediction"],
+    options = ["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"],
     icons = ["bar-chart-line","diagram-3","graph-up","diagram-3","graph-up"],
   )
   
