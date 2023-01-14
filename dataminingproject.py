@@ -442,7 +442,7 @@ if selected == "Regression prediction":
   data = pd.read_csv("encoded_data.csv")
   
   cols = list(data.columns)
-  cols.remove("wash_item")
+  cols.remove("totalspent_rm")
 
   user_input = {}
   pickle_files = os.listdir("pickle_files")
@@ -492,4 +492,4 @@ if selected == "Regression prediction":
   model = pickle.load(open("pickle_files/best_reg.pkl", "rb"))
   predict = model.predict(scaled)[0]
   
-  st.write(f"Your predicted value is : RM {predict}.")
+  st.write(f"Your predicted value is : RM {predict:.2f}.")
