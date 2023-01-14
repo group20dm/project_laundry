@@ -381,12 +381,10 @@ if selected == "Classification prediction":
           user_input[col] = [selected]
 
   user_input = pd.DataFrame(user_input)
-  st.write(user_input)
-
+  
   scaler = pickle.load(open("pickle_files/class_scaler.pkl", "rb"))
   scaled = pd.DataFrame(scaler.transform(user_input), columns = user_input.columns)
 
-  st.write(scaled)
   selected_washer = data[data.wash_item != 2]
   X = selected_washer.drop(columns = "wash_item")
   scaler = StandardScaler()
@@ -412,8 +410,10 @@ if selected == "Classification prediction":
   
   
   mlp_washer_history = mlp_washer_improved.fit(X_train_res, y_train_res, validation_split=0.2, epochs=50, callbacks=[early_stopping])
-  predict = mlp_washer_improved.predict(scaled)
-  st.write(int(mlp_washer_improved.predict(scaled)[0] > .5))
+  predict = int(mlp_washer_improved.predict(scaled)[0] > .5)
+  predict = "clothes" if predict == 1 else "blankets"
+   
+  st.write(f"Your predicted value is : {predict}.")
   
 if selected == "Regression prediction":
   st.title("Regression prediction")
