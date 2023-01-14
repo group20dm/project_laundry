@@ -486,6 +486,7 @@ if selected == "Regression prediction":
   
   st.write(f"Your predicted value is : RM {predict:.2f}.")
   
+with st.sidebar:  
 if selected == "Data Analysis":
   if st.button("Download PDF"):
        html(
