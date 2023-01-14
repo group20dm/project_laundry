@@ -364,21 +364,32 @@ if selected == "Classification prediction":
 
       return False 
 
+  numerical_input = ["age_range", "timespent_minutes", "buydrinks", "totalspent_rm", "num_of_baskets", "year"]
+
+  nearby_laundries = ["Super Dryclean Sdn Bhd", "Jag Nasmech Sdn Bhd", "Zack Laundry", "Dobi Auto Sdn Bhd", "Dobi Pro Enterprise", "Laundry Bar (Pantai Hillpark) - 24 Hours"]
+
   for col in cols:
-      uniq = data[col].unique()
 
-      found_encoder = False
-      if find_encoder(col): 
-          encoder = pickle.load(open(f"pickle_files/{col}.pkl", "rb"))
-          uniq = encoder.inverse_transform(uniq)
-          found_encoder = True
+        uniq = data[col].unique()
 
-      selected = st.selectbox(col, uniq)
+        found_encoder = False
+        if find_encoder(col): 
+            encoder = pickle.load(open(f"pickle_files/{col}.pkl", "rb"))
+            uniq = encoder.inverse_transform(uniq)
+            found_encoder = True
 
-      if found_encoder: 
-          user_input[col] = [encoder.transform([selected])]
-      else: 
-          user_input[col] = [selected]
+        if col in numerical_input: selected = st.number_input(col)
+        elif col == "month": selected = st.number_input(col, min_value = 1, max_value = 12)
+        elif col in ["hour", "minute", "second"]: selected = st.number_input(col, min_value = 0, max_value = 60)
+        elif col in nearby_laundries: st.selectbox(col, ["yes", "no"])
+        else: selected = st.selectbox(col, uniq)
+
+        if found_encoder: 
+            user_input[col] = [encoder.transform([selected])]
+        elif col in nearby_laundries: 
+            user_input[col] = [0] if selected == "no" else [1]
+        else: 
+            user_input[col] = [selected]
 
   user_input = pd.DataFrame(user_input)
   
