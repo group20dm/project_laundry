@@ -387,8 +387,20 @@ if selected == "Classification prediction":
   scaled = pd.DataFrame(scaler.transform(user_input), columns = user_input.columns)
 
   st.write(scaled)
+  selected_washer = data[data.wash_item != 2]
+  X = selected_washer.drop(columns = "wash_item")
+  scaler = StandardScaler()
+  X_scaled = scaler.fit_transform(X)
 
+  save_model(scaler, "class_scaler")
+
+  X = pd.DataFrame(X_scaled, columns = X.columns)
+  y = selected_washer.wash_item.copy()
+
+  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
   early_stopping = EarlyStopping(patience=3)
+  sm = SMOTE(random_state=42)
+  X_train_res, y_train_res = sm.fit_resample(X_train,y_train)
   mlp_washer_improved = Sequential([
       Dense(400, activation = "relu", input_shape = (X_train_res.shape[1],)),
       Dense(350, activation = "relu"),
