@@ -4,7 +4,6 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
-
 import os
 import plotly.express as px
 import plotly.graph_objects as go
@@ -40,6 +39,7 @@ from selenium.webdriver.chrome.service import Service
 
 from shapely.geometry import shape
 
+from streamlit.components.v1 import html
 from streamlit_folium import st_folium,folium_static
 from folium.plugins import HeatMap, FastMarkerCluster
 from streamlit_option_menu import option_menu
