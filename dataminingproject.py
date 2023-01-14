@@ -55,12 +55,12 @@ from ml_tools import *
 
 from imblearn.over_sampling import SMOTE
 
-from keras.models import Sequential
-from keras.layers import Dense, Dropout, Conv1D, Flatten, MaxPooling1D, BatchNormalization
-from keras.callbacks import EarlyStopping
-from keras.metrics import Precision, Recall, AUC
-from keras.utils import plot_model
-from keras import backend as K
+# from keras.models import Sequential
+# from keras.layers import Dense, Dropout, Conv1D, Flatten, MaxPooling1D, BatchNormalization
+# from keras.callbacks import EarlyStopping
+# from keras.metrics import Precision, Recall, AUC
+# from keras.utils import plot_model
+# from keras import backend as K
 
 from mlxtend.frequent_patterns import apriori, association_rules
 from PIL import Image
