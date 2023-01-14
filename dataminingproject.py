@@ -70,23 +70,14 @@ mpl.rcParams.update(mpl.rcParamsDefault)
 
 #navbar
 with st.sidebar:
-#   selected = option_menu (
-#     menu_title = "Main menu",
-#     options = ["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"],
-#     icons = ["bar-chart-line","diagram-3","graph-up","diagram-3","graph-up"],
-#   )
-  selected = st.radio("Main menu",["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"])
+    selected = option_menu (
+    menu_title = "Main menu",
+    options = ["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"],
+    icons = ["bar-chart-line","diagram-3","graph-up","diagram-3","graph-up"],
+  )
+#   selected = st.radio("Main menu",["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"])
   
-  if selected == "Data Analysis":
-    if st.button("Download PDF"):
-         html(
-             f"""
-                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
-                 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-                 <script>{open("download.js").read()}
-
-                 </script>
-                 """,height = 0,width = 0)
+  
 data = pd.read_csv('analytical_dataset.csv')
 
 #first page
@@ -494,3 +485,14 @@ if selected == "Regression prediction":
   predict = model.predict(scaled)[0]
   
   st.write(f"Your predicted value is : RM {predict:.2f}.")
+  
+if selected == "Data Analysis":
+  if st.button("Download PDF"):
+       html(
+           f"""
+               <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+               <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+               <script>{open("download.js").read()}
+
+               </script>
+               """,height = 0,width = 0)
