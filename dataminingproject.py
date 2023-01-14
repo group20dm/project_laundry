@@ -487,13 +487,13 @@ if selected == "Regression prediction":
   st.write(f"Your predicted value is : RM {predict:.2f}.")
   
 with st.sidebar:  
-if selected == "Data Analysis":
-  if st.button("Download PDF"):
-       html(
-           f"""
-               <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
-               <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-               <script>{open("download.js").read()}
+  if selected == "Data Analysis":
+    if st.button("Download PDF"):
+         html(
+             f"""
+                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+                 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+                 <script>{open("download.js").read()}
 
-               </script>
-               """,height = 0,width = 0)
+                 </script>
+                 """,height = 0,width = 0)
