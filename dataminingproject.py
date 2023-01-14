@@ -70,11 +70,13 @@ mpl.rcParams.update(mpl.rcParamsDefault)
 
 #navbar
 with st.sidebar:
-  selected = option_menu (
-    menu_title = "Main menu",
-    options = ["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"],
-    icons = ["bar-chart-line","diagram-3","graph-up","diagram-3","graph-up"],
-  )
+#   selected = option_menu (
+#     menu_title = "Main menu",
+#     options = ["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"],
+#     icons = ["bar-chart-line","diagram-3","graph-up","diagram-3","graph-up"],
+#   )
+  selected = st.radio("Main menu",["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"])
+  
   if selected == "Data Analysis":
     if st.button("Download PDF"):
          html(
