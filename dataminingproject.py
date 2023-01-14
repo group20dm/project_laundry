@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
+import matplotlib as mpl
+
 
 import os
 import plotly.express as px
@@ -64,6 +66,7 @@ from PIL import Image
 import pickle
 
 st.set_page_config(layout="wide")
+mpl.rcParams.update(mpl.rcParamsDefault)
 
 #navbar
 with st.sidebar:
