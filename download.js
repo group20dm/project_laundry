@@ -13,7 +13,7 @@ let pdf_height = pdf_width * 1.5 + 20;
 let n_pages = Math.ceil(height / pdf_height) - 1;
 download_button.innerText = "Downloading PDF...";
 
-html2canvas(container, {allowTaint: true,crossOrigin:"anonymous"}).then(function (canvas) {{
+html2canvas(container, {allowTaint: true,foreignObjectRendering: true}).then(function (canvas) {{
 
     canvas.getContext('2d');
 
