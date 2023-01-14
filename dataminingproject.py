@@ -357,28 +357,6 @@ if selected == "Classification prediction":
   
   data = pd.read_csv("encoded_data.csv")
   
-  def save_model(model, file):
-    pickle.dump(model, open(f"pickle_files/{file}.pkl", "wb"))
-    
-  categoricals = list(data.select_dtypes(object).columns)
-
-  for categorical in categoricals:
-    le = LabelEncoder()
-    data[categorical] = le.fit_transform(data[categorical])
-    save_model(le, categorical)
-  
-  selected_washer = data[data.wash_item != 2]
-  X = selected_washer.drop(columns = "wash_item")
-  scaler = StandardScaler()
-  X_scaled = scaler.fit_transform(X)
-
-  save_model(scaler, "class_scaler")
-
-  X = pd.DataFrame(X_scaled, columns = X.columns)
-  y = selected_washer.wash_item.copy()
-
-  X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42, stratify = y)
-  
   cols = list(data.columns)
   cols.remove("wash_item")
 
