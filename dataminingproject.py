@@ -317,15 +317,19 @@ if selected == "Classification":
   #columns
   col1, col2 = st.columns(2)
   with col1:
-    st.header("Boruta")
+    st.subheader("Boruta")
     boruta = Image.open('top10_boruta.jpg')
     st.image(boruta, caption='Top 10 boruta')
     
   with col2:
-    st.header("RFE") 
+    st.subheader("RFE") 
     RFE = Image.open('top10_RFE.jpg')
     st.image(RFE, caption='Top 10 RFE')
-    
+  
+  st.header("SMOTE")
+  SMOTE = Image.open('SMOTE.jpg')
+  st.image(SMOTE, caption='SMOTE')
+  
 #third page
 if selected == "Model":
   st.title("Model")
