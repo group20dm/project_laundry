@@ -75,7 +75,16 @@ with st.sidebar:
     options = ["Data Analysis", "Classification", "Regression", "Classification prediction" , "Regression prediction"],
     icons = ["bar-chart-line","diagram-3","graph-up","diagram-3","graph-up"],
   )
-  
+  if selected == "Data Analysis":
+    if st.button("Download PDF"):
+         html(
+             f"""
+                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
+                 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+                 <script>{open("download.js").read()}
+
+                 </script>
+                 """,height = 0,width = 0)
 data = pd.read_csv('analytical_dataset.csv')
 
 #first page
@@ -262,16 +271,6 @@ if selected == "Data Analysis":
   st.write(outliers2)
   outliers3 = display_outliers(data_copy, "Box plot for each Numerical Features After Missing Values Handling")
   st.write(outliers3)
-  
-  if st.button("Download PDF"):
-        html(
-            f"""
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
-                <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-                <script>{open("download.js").read()}
-
-                </script>
-                """,height = 0,width = 0)
   
   data = data_copy.copy()
   data["year"] = data.date.dt.year
