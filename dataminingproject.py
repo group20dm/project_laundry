@@ -488,12 +488,10 @@ if selected == "Regression prediction":
   
 with st.sidebar:  
   if selected == "Data Analysis":
-    if st.button("Download PDF"):
-         html(
-             f"""
-                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.debug.js"></script>
-                 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
-                 <script>{open("download.js").read()}
+    with open("Data_Analysis.pdf", "rb") as pdf_file:
+      PDFbyte = pdf_file.read()
 
-                 </script>
-                 """,height = 0,width = 0)
+      st.download_button(label="Download EDA Page", 
+              data=PDFbyte,
+              file_name="Data_Analysis.pdf",
+              mime='application/octet-stream')
