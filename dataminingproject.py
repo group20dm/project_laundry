@@ -483,7 +483,7 @@ if selected == "Regression prediction":
 
   user_input = pd.DataFrame(user_input)
   
-  scaler = pickle.load(open("pickle_files/class_scaler.pkl", "rb"))
+  scaler = pickle.load(open("pickle_files/reg_scaler.pkl", "rb"))
   scaled = pd.DataFrame(scaler.transform(user_input), columns = user_input.columns)
 
   selected_washer = data[data.wash_item != 2]
