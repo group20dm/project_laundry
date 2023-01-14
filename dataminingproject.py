@@ -327,18 +327,9 @@ if selected == "Classification":
     model_improve_conf = Image.open('model_improve_conf.jpg')
     st.image(model_improve_conf, caption='Confusion Metrics')
 #third page
-if selected == "Regression":
-  st.title("Regression")
+if selected == "Regression prediction":
+  st.title("Regression prediction")
   st.header("Feature Selection")
-#   X = data.drop(columns = 'totalspent_rm')
-#   scaler = StandardScaler()
-#   X_scaled = scaler.fit_transform(X)
-
-#   save_model(scaler, "reg_scaler")
-
-#   X = pd.DataFrame(X_scaled, columns = X.columns)
-#   y = data.totalspent_rm
-#   X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = .3, random_state = 42)
   
   col1, col2 = st.columns(2)
   with col1:
